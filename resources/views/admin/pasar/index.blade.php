@@ -207,18 +207,18 @@
                   <td>{{ $data->listrik }}</td>
                   <td>
                     {{-- <a href="{{ route('sampah.edit', $data->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a> --}}
-                    <a href="{{ route('pasar.edit', $data->id_pasar) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
-
-
-                    {{-- <a data-confirm-delete="true" href="/admin/pasar/{{ $data->id_pasar }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a> --}}
-                    <form id="delete-form-{{ $data->id_pasar }}" action="/admin/pasar/{{ $data->id_pasar }}" method="POST">
-                      @csrf
-                      @method('DELETE')
-                      <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $data->id_pasar }})">
-                        <i class="fas fa-trash"></i> Hapus
-                      </button>
-                    </form>
-
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a href="{{ route('pasar.edit', $data->id_pasar) }}" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i> Edit
+                      </a>
+                      <form id="delete-form-{{ $data->id_pasar }}" action="/admin/pasar/{{ $data->id_pasar }}" method="POST" class="d-inline-flex align-items-center m-0 p-0 ms-2">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $data->id_pasar }})">
+                          <i class="fas fa-trash"></i> Hapus
+                        </button>
+                      </form>
+                    </div>
 
                     {{-- <a data-confirm-delete="true" href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a> --}}
 

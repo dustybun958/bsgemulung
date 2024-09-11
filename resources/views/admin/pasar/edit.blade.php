@@ -13,7 +13,7 @@
             @method('PUT')
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pasar</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <a href="{{ url()->previous() }}" class="btn-close"></a>
             </div>
             <div class="modal-body">
               <!-- Field input untuk pasar -->
@@ -146,7 +146,7 @@
 
               <!-- Footer modal -->
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
               </div>
             </div>
