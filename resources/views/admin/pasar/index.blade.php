@@ -21,19 +21,27 @@
               </div>
               <div class="modal-body">
                 <div class="mb-3">
-                  <div class="mb-3">
-                    <label for="" class="form-label">Pasar</label>
-                    <input type="text" class="form-control" name="pasar">
-                  </div>
+                  <label for="pasar" class="form-label">Nama Pasar</label>
+                  <select name="pasar" required id="pasar" class="form-control">
+                    <option value="" disabled selected>- Pilih Pasar -</option> <!-- Default option -->
+                    <option value="rejowinangun">Rejowinangun</option>
+                    <option value="kebonpolo">Kebonpolo</option>
+                    <option value="cacaban">Cacaban</option>
+                    <option value="sidomukti">Sidomukti</option>
+                    <option value="gotongroyong">Gotong Royong</option>
+                  </select>
                 </div>
+
                 <div class="mb-3">
-                  <label for="" class="form-label">Koordinat</label>
-                  <input type="text" class="form-control" name="koordinat">
+                  <label for="koordinat" class="form-label">Koordinat</label>
+                  <input type="text" required disabled class="form-control" name="koordinat" id="koordinat">
                 </div>
+
                 <div class="mb-3">
                   <div class='mb-3'>
                     <label for="kantor_pengelola" class="form-label">Kantor Pengelola</label>
-                    <select name="kantor_pengelola" id="kantor_pengelola" class="form-control">
+                    <select name="kantor_pengelola" required id="kantor_pengelola" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -42,7 +50,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="toilet" class="form-label">Toilet</label>
-                    <select name="toilet" id="toilet" class="form-control">
+                    <select name="toilet" required id="toilet" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -51,7 +60,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="pos_ukur_ulang" class="form-label">Pos Ukur Ulang</label>
-                    <select name="pos_ukur_ulang" id="pos_ukur_ulang" class="form-control">
+                    <select name="pos_ukur_ulang" required id="pos_ukur_ulang" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -60,7 +70,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="pos_keamanan" class="form-label">Pos Keamanan</label>
-                    <select name="pos_keamanan" id="pos_keamanan" class="form-control">
+                    <select name="pos_keamanan" required id="pos_keamanan" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -69,7 +80,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="ruang_menyusui" class="form-label">Ruang Menyusui</label>
-                    <select name="ruang_menyusui" id="ruang_menyusui" class="form-control">
+                    <select name="ruang_menyusui" required id="ruang_menyusui" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -78,7 +90,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="ruang_kesehatan" class="form-label">Ruang Kesehatan</label>
-                    <select name="ruang_kesehatan" id="ruang_kesehatan" class="form-control">
+                    <select name="ruang_kesehatan" required id="ruang_kesehatan" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -87,7 +100,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="ruang_peribadatan" class="form-label">Ruang Peribadatan</label>
-                    <select name="ruang_peribadatan" id="ruang_peribadatan" class="form-control">
+                    <select name="ruang_peribadatan" required id="ruang_peribadatan" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -96,7 +110,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="pemadam_kebakaran" class="form-label">Pemadam Kebakaran</label>
-                    <select name="pemadam_kebakaran" id="pemadam_kebakaran" class="form-control">
+                    <select name="pemadam_kebakaran" required id="pemadam_kebakaran" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -105,7 +120,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="tempat_parkir" class="form-label">Tempat Parkir</label>
-                    <select name="tempat_parkir" id="tempat_parkir" class="form-control">
+                    <select name="tempat_parkir" required id="tempat_parkir" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -114,16 +130,20 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="tps" class="form-label">TPS</label>
-                    <select name="tps" id="tps" class="form-control">
+                    <select name="tps" id="tps" required class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
+
                   </div>
                 </div>
+
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="pengolahan_air_limbah" class="form-label">Pos Ukur Ulang</label>
-                    <select name="pengolahan_air_limbah" id="pengolahan_air_limbah" class="form-control">
+                    <select name="pengolahan_air_limbah" required id="pengolahan_air_limbah" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -133,7 +153,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="air_bersih" class="form-label">Air Bersih</label>
-                    <select name="air_bersih" id="air_bersih" class="form-control">
+                    <select name="air_bersih" required id="air_bersih" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -142,7 +163,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="listrik" class="form-label">Listrik</label>
-                    <select name="listrik" id="listrik" class="form-control">
+                    <select name="listrik" required id="listrik" class="form-control">
+                      <option value="" disabled selected>--</option> <!-- Default option -->
                       <option value="Ada">Ada</option>
                       <option value="Tidak Ada">Tidak Ada</option>
                     </select>
@@ -189,7 +211,7 @@
                 @foreach ($pasar as $data)
                 <tr>
                   {{-- <td>{{ $loop->iteration }}</td> --}}
-                  <td>{{ $data->id_pasar}}</td>
+                  <td>{{ $loop->iteration}}</td>
                   <td>{{ $data->pasar }}</td>
                   <td>{{ $data->koordinat }}</td>
                   <td>{{ $data->kantor_pengelola }}</td>
@@ -263,5 +285,43 @@
       }
     });
   }
+
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var pasarElement = document.getElementById('pasar');
+    var koordinatElement = document.getElementById('koordinat');
+
+    pasarElement.addEventListener('change', function() {
+      var pasarValue = this.value;
+
+      switch (pasarValue) {
+        case 'rejowinangun':
+          koordinatElement.value = '-7.485679, 110.221897'; // Set value to 'x'
+          koordinatElement.disabled = true; // Make the input read-only
+          break;
+        case 'kebonpolo':
+          koordinatElement.value = '-7.463964, 110.223667'; // Set value to 'y'
+          koordinatElement.disabled = true; // Enable the input
+          break;
+        case 'cacaban':
+          koordinatElement.value = '-7.476743, 110.211544'; // Set value to 'z'
+          koordinatElement.disabled = true; // Enable the input
+          break;
+        case 'sidomukti':
+          koordinatElement.value = '-7.491176, 110.221396'; // Set value to 'a'
+          koordinatElement.disabled = true; // Enable the input
+          break;
+        case 'gotongroyong':
+          koordinatElement.value = '-7.493941, 110.224530'; // Set value to 'b'
+          koordinatElement.disabled = true; // Enable the input
+          break;
+        default:
+          koordinatElement.value = '-'; // Clear value if no match
+          koordinatElement.disabled = true; // Enable the input
+          break;
+      }
+    });
+  });
 
 </script>
