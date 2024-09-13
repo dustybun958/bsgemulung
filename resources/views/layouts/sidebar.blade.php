@@ -18,7 +18,14 @@
     <li class="menu-item {{ Request::is('admin/pasar') ? 'active' : '' }}">
       <a href="/admin/pasar" class="menu-link">
         <i class="menu-icon tf-icons bx bx-box"></i>
-        <div data-i18n="Without menu">Input Data Pasar</div>
+        <div data-i18n="Without menu">Data Pasar</div>
+      </a>
+    </li>
+
+    <li class="menu-item {{ Request::is('admin/lapak') ? 'active' : '' }}">
+      <a href="/admin/lapak" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-box"></i>
+        <div data-i18n="Without menu">Data Lapak</div>
       </a>
     </li>
 

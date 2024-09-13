@@ -11,6 +11,7 @@ use App\Http\Controllers\NasabahSampahController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LaporanSampahController;
 use App\Http\Controllers\DeveloperController;
+use App\Http\Controllers\LapakController;
 use App\Http\Controllers\PasarController;
 use App\Models\Sampah;
 use App\Models\User;
@@ -40,20 +41,14 @@ Route::get('/admin/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
-    // Route::get('/admin/master-data/users', [UserController::class, 'index'])->name('admin.users.index');
-    // Route::get('/admin/master-data/users/create', [UserController::class, 'create'])->name('admin.users.create');
-    // Route::get('/admin/master-data/users/{user}', [UserController::class, 'show'])->name('admin.users.show');
-
     Route::get('/admin/pasar', [PasarController::class, 'index'])->name('pasar.index');
     Route::post('/admin/pasar', [PasarController::class, 'store']);
     Route::delete('/admin/pasar/{pasar}', [PasarController::class, 'destroy'])->name('pasar.destroy');
     Route::get('/admin/pasar/{id}/edit', [PasarController::class, 'edit'])->name('pasar.edit');
     Route::put('/admin/pasar/{id}', [PasarController::class, 'update'])->name('pasar.update');
 
-
-    // Route::put('/admin/sampah/{sampah}', [AdminSampahController::class, 'update']);
-    // Route::get('/admin/sampah/{id}/edit', [AdminSampahController::class, 'edit'])->name('sampah.edit');
-    // Route::get('/admin/sampah', [AdminSampahController::class, 'index'])->name('sampah.index');
+    Route::get('/admin/lapak', [LapakController::class, 'index'])->name('admin.lapak.index');
+    Route::post('/admin/lapak', [LapakController::class, 'store']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

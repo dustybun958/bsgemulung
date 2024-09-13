@@ -19,141 +19,193 @@
               <!-- Field input untuk pasar -->
               <div class="mb-3">
                 <label for="pasar" class="form-label">Pasar</label>
-                <input type="text" class="form-control" name="pasar" value="{{ old('pasar', $pasar->pasar) }}">
+                <select name="pasar" id="pasar" class="form-control" onchange="handlePasarChange()">
+                  <option value="rejowinangun" {{ old('pasar', $pasar->pasar) == 'rejowinangun' ? 'selected' : '' }}>Rejowinangun</option>
+                  <option value="kebonpolo" {{ old('pasar', $pasar->pasar) == 'kebonpolo' ? 'selected' : '' }}>Kebonpolo</option>
+                  <option value="cacaban" {{ old('pasar', $pasar->pasar) == 'cacaban' ? 'selected' : '' }}>Cacaban</option>
+                  <option value="sidomukti" {{ old('pasar', $pasar->pasar) == 'sidomukti' ? 'selected' : '' }}>Sidomukti</option>
+                  <option value="gotongroyong" {{ old('pasar', $pasar->pasar) == 'gotongroyong' ? 'selected' : '' }}>Gotong Royong</option>
+                </select>
               </div>
+
               <!-- Field input untuk koordinat -->
-              <div class="mb-3">
+              {{-- <div class="mb-3">
                 <label for="koordinat" class="form-label">Koordinat</label>
                 <input type="text" class="form-control" name="koordinat" value="{{ old('koordinat', $pasar->koordinat) }}">
-              </div>
+            </div> --}}
 
-              <!-- Kantor Pengelola -->
-              <div class="mb-3">
-                <label for="kantor_pengelola" class="form-label">Kantor Pengelola</label>
-                <select name="kantor_pengelola" id="kantor_pengelola" class="form-control">
-                  <option value="Ada" {{ old('kantor_pengelola', $pasar->kantor_pengelola) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('kantor_pengelola', $pasar->kantor_pengelola) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
+            <div class="mb-3">
+              <label for="koordinat" class="form-label">Koordinat</label>
+              <input type="text" required readonly class="form-control" name="koordinat" value="{{ old('koordinat', $pasar->koordinat) }}" id="koordinat">
 
-              <!-- Toilet -->
-              <div class="mb-3">
-                <label for="toilet" class="form-label">Toilet</label>
-                <select name="toilet" id="toilet" class="form-control">
-                  <option value="Ada" {{ old('toilet', $pasar->toilet) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('toilet', $pasar->toilet) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Pos Ukur Ulang -->
-              <div class="mb-3">
-                <label for="pos_ukur_ulang" class="form-label">Pos Ukur Ulang</label>
-                <select name="pos_ukur_ulang" id="pos_ukur_ulang" class="form-control">
-                  <option value="Ada" {{ old('pos_ukur_ulang', $pasar->pos_ukur_ulang) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('pos_ukur_ulang', $pasar->pos_ukur_ulang) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Pos Keamanan -->
-              <div class="mb-3">
-                <label for="pos_keamanan" class="form-label">Pos Keamanan</label>
-                <select name="pos_keamanan" id="pos_keamanan" class="form-control">
-                  <option value="Ada" {{ old('pos_keamanan', $pasar->pos_keamanan) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('pos_keamanan', $pasar->pos_keamanan) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Ruang Menyusui -->
-              <div class="mb-3">
-                <label for="ruang_menyusui" class="form-label">Ruang Menyusui</label>
-                <select name="ruang_menyusui" id="ruang_menyusui" class="form-control">
-                  <option value="Ada" {{ old('ruang_menyusui', $pasar->ruang_menyusui) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('ruang_menyusui', $pasar->ruang_menyusui) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Ruang Kesehatan -->
-              <div class="mb-3">
-                <label for="ruang_kesehatan" class="form-label">Ruang Kesehatan</label>
-                <select name="ruang_kesehatan" id="ruang_kesehatan" class="form-control">
-                  <option value="Ada" {{ old('ruang_kesehatan', $pasar->ruang_kesehatan) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('ruang_kesehatan', $pasar->ruang_kesehatan) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Ruang Peribadatan -->
-              <div class="mb-3">
-                <label for="ruang_peribadatan" class="form-label">Ruang Peribadatan</label>
-                <select name="ruang_peribadatan" id="ruang_peribadatan" class="form-control">
-                  <option value="Ada" {{ old('ruang_peribadatan', $pasar->ruang_peribadatan) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('ruang_peribadatan', $pasar->ruang_peribadatan) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Pemadam Kebakaran -->
-              <div class="mb-3">
-                <label for="pemadam_kebakaran" class="form-label">Pemadam Kebakaran</label>
-                <select name="pemadam_kebakaran" id="pemadam_kebakaran" class="form-control">
-                  <option value="Ada" {{ old('pemadam_kebakaran', $pasar->pemadam_kebakaran) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('pemadam_kebakaran', $pasar->pemadam_kebakaran) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Tempat Parkir -->
-              <div class="mb-3">
-                <label for="tempat_parkir" class="form-label">Tempat Parkir</label>
-                <select name="tempat_parkir" id="tempat_parkir" class="form-control">
-                  <option value="Ada" {{ old('tempat_parkir', $pasar->tempat_parkir) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('tempat_parkir', $pasar->tempat_parkir) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- TPS -->
-              <div class="mb-3">
-                <label for="tps" class="form-label">TPS</label>
-                <select name="tps" id="tps" class="form-control">
-                  <option value="Ada" {{ old('tps', $pasar->tps) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('tps', $pasar->tps) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Pengolahan Air Limbah -->
-              <div class="mb-3">
-                <label for="pengolahan_air_limbah" class="form-label">Pengolahan Air Limbah</label>
-                <select name="pengolahan_air_limbah" id="pengolahan_air_limbah" class="form-control">
-                  <option value="Ada" {{ old('pengolahan_air_limbah', $pasar->pengolahan_air_limbah) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('pengolahan_air_limbah', $pasar->pengolahan_air_limbah) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Air Bersih -->
-              <div class="mb-3">
-                <label for="air_bersih" class="form-label">Air Bersih</label>
-                <select name="air_bersih" id="air_bersih" class="form-control">
-                  <option value="Ada" {{ old('air_bersih', $pasar->air_bersih) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('air_bersih', $pasar->air_bersih) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Listrik -->
-              <div class="mb-3">
-                <label for="listrik" class="form-label">Listrik</label>
-                <select name="listrik" id="listrik" class="form-control">
-                  <option value="Ada" {{ old('listrik', $pasar->listrik) == 'Ada' ? 'selected' : '' }}>Ada</option>
-                  <option value="Tidak Ada" {{ old('listrik', $pasar->listrik) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
-                </select>
-              </div>
-
-              <!-- Footer modal -->
-              <div class="modal-footer">
-                <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-              </div>
             </div>
-          </form>
+
+
+            <!-- Kantor Pengelola -->
+            <div class="mb-3">
+              <label for="kantor_pengelola" class="form-label">Kantor Pengelola</label>
+              <select name="kantor_pengelola" id="kantor_pengelola" class="form-control">
+                <option value="Ada" {{ old('kantor_pengelola', $pasar->kantor_pengelola) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('kantor_pengelola', $pasar->kantor_pengelola) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Toilet -->
+            <div class="mb-3">
+              <label for="toilet" class="form-label">Toilet</label>
+              <select name="toilet" id="toilet" class="form-control">
+                <option value="Ada" {{ old('toilet', $pasar->toilet) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('toilet', $pasar->toilet) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Pos Ukur Ulang -->
+            <div class="mb-3">
+              <label for="pos_ukur_ulang" class="form-label">Pos Ukur Ulang</label>
+              <select name="pos_ukur_ulang" id="pos_ukur_ulang" class="form-control">
+                <option value="Ada" {{ old('pos_ukur_ulang', $pasar->pos_ukur_ulang) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('pos_ukur_ulang', $pasar->pos_ukur_ulang) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Pos Keamanan -->
+            <div class="mb-3">
+              <label for="pos_keamanan" class="form-label">Pos Keamanan</label>
+              <select name="pos_keamanan" id="pos_keamanan" class="form-control">
+                <option value="Ada" {{ old('pos_keamanan', $pasar->pos_keamanan) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('pos_keamanan', $pasar->pos_keamanan) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Ruang Menyusui -->
+            <div class="mb-3">
+              <label for="ruang_menyusui" class="form-label">Ruang Menyusui</label>
+              <select name="ruang_menyusui" id="ruang_menyusui" class="form-control">
+                <option value="Ada" {{ old('ruang_menyusui', $pasar->ruang_menyusui) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('ruang_menyusui', $pasar->ruang_menyusui) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Ruang Kesehatan -->
+            <div class="mb-3">
+              <label for="ruang_kesehatan" class="form-label">Ruang Kesehatan</label>
+              <select name="ruang_kesehatan" id="ruang_kesehatan" class="form-control">
+                <option value="Ada" {{ old('ruang_kesehatan', $pasar->ruang_kesehatan) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('ruang_kesehatan', $pasar->ruang_kesehatan) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Ruang Peribadatan -->
+            <div class="mb-3">
+              <label for="ruang_peribadatan" class="form-label">Ruang Peribadatan</label>
+              <select name="ruang_peribadatan" id="ruang_peribadatan" class="form-control">
+                <option value="Ada" {{ old('ruang_peribadatan', $pasar->ruang_peribadatan) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('ruang_peribadatan', $pasar->ruang_peribadatan) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Pemadam Kebakaran -->
+            <div class="mb-3">
+              <label for="pemadam_kebakaran" class="form-label">Pemadam Kebakaran</label>
+              <select name="pemadam_kebakaran" id="pemadam_kebakaran" class="form-control">
+                <option value="Ada" {{ old('pemadam_kebakaran', $pasar->pemadam_kebakaran) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('pemadam_kebakaran', $pasar->pemadam_kebakaran) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Tempat Parkir -->
+            <div class="mb-3">
+              <label for="tempat_parkir" class="form-label">Tempat Parkir</label>
+              <select name="tempat_parkir" id="tempat_parkir" class="form-control">
+                <option value="Ada" {{ old('tempat_parkir', $pasar->tempat_parkir) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('tempat_parkir', $pasar->tempat_parkir) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- TPS -->
+            <div class="mb-3">
+              <label for="tps" class="form-label">TPS</label>
+              <select name="tps" id="tps" class="form-control">
+                <option value="Ada" {{ old('tps', $pasar->tps) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('tps', $pasar->tps) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Pengolahan Air Limbah -->
+            <div class="mb-3">
+              <label for="pengolahan_air_limbah" class="form-label">Pengolahan Air Limbah</label>
+              <select name="pengolahan_air_limbah" id="pengolahan_air_limbah" class="form-control">
+                <option value="Ada" {{ old('pengolahan_air_limbah', $pasar->pengolahan_air_limbah) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('pengolahan_air_limbah', $pasar->pengolahan_air_limbah) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Air Bersih -->
+            <div class="mb-3">
+              <label for="air_bersih" class="form-label">Air Bersih</label>
+              <select name="air_bersih" id="air_bersih" class="form-control">
+                <option value="Ada" {{ old('air_bersih', $pasar->air_bersih) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('air_bersih', $pasar->air_bersih) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Listrik -->
+            <div class="mb-3">
+              <label for="listrik" class="form-label">Listrik</label>
+              <select name="listrik" id="listrik" class="form-control">
+                <option value="Ada" {{ old('listrik', $pasar->listrik) == 'Ada' ? 'selected' : '' }}>Ada</option>
+                <option value="Tidak Ada" {{ old('listrik', $pasar->listrik) == 'Tidak Ada' ? 'selected' : '' }}>Tidak Ada</option>
+              </select>
+            </div>
+
+            <!-- Footer modal -->
+            <div class="modal-footer">
+              <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
         </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
+</div>
 @endsection
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var pasarElement = document.getElementById('pasar');
+    var koordinatElement = document.getElementById('koordinat');
+
+    pasarElement.addEventListener('change', function() {
+      var pasarValue = this.value;
+
+      switch (pasarValue) {
+        case 'rejowinangun':
+          koordinatElement.value = '-7.485679, 110.221897';
+          koordinatElement.readOnly = true;
+          break;
+        case 'kebonpolo':
+          koordinatElement.value = '-7.463964, 110.223667';
+          koordinatElement.readOnly = true;
+          break;
+        case 'cacaban':
+          koordinatElement.value = '-7.476743, 110.211544';
+          koordinatElement.readOnly = true;
+          break;
+        case 'sidomukti':
+          koordinatElement.value = '-7.491176, 110.221396';
+          koordinatElement.readOnly = true;
+          break;
+        case 'gotongroyong':
+          koordinatElement.value = '-7.493941, 110.224530';
+          koordinatElement.readOnly = true;
+          break;
+        default:
+          koordinatElement.value = '-';
+          koordinatElement.readOnly = true;
+          break;
+      }
+    });
+  });
+
+</script>
