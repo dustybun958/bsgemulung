@@ -13,6 +13,7 @@ use App\Http\Controllers\LaporanSampahController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\LapakController;
 use App\Http\Controllers\PasarController;
+use App\Http\Controllers\PenarikRetribusiController;
 use App\Models\Sampah;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/lapak', [LapakController::class, 'index'])->name('admin.lapak.index');
     Route::post('/admin/lapak', [LapakController::class, 'store']);
+
+    Route::get('/admin/penarik_retribusi', [PenarikRetribusiController::class, 'index'])->name('penarik_retribusi.index');
+    Route::post('/admin/penarik_retribusi', [PenarikRetribusiController::class, 'store']);
+    Route::delete('/admin/penarik_retribusi/{penarik_retribusi}', [PenarikRetribusiController::class, 'destroy'])->name('penarik_retribusi.destroy');
+    Route::get('/admin/penarik_retribusi/{id}/edit', [PenarikRetribusiController::class, 'edit'])->name('penarik_retribusi.edit');
+    Route::put('/admin/penarik_retribusi/{id}', [PenarikRetribusiController::class, 'update'])->name('penarik_retribusi.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

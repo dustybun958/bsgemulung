@@ -29,20 +29,54 @@
       </a>
     </li>
 
-    <li class="menu-header small text-uppercase "><span class="menu-header-text">Pasar</span></li>
-    <li class="menu-item {{ Request::is('laporan/sampah') ? 'active' : '' }}">
-      <a href="/admin/pasar" class="menu-link">
-        <i class="menu-icon tf-icons bx bxs-report"></i>
-        <div data-i18n="Without menu">Data Pasar</div>
+    <li class="menu-item {{ Request::is('admin/') ? 'active' : '' }}">
+      <a href="/admin/" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-box"></i>
+        <div data-i18n="Without menu">Data Pedagang</div>
       </a>
     </li>
 
-    <li class="menu-header small text-uppercase "><span class="menu-header-text">Laporan</span></li>
-    <li class="menu-item {{ Request::is('laporan/sampah') ? 'active' : '' }}">
-      <a href="/laporan/sampah" class="menu-link">
-        <i class="menu-icon tf-icons bx bxs-report"></i>
-        <div data-i18n="Without menu">Laporan</div>
+
+    <li class="menu-header small text-uppercase "><span class="menu-header-text">Sub Admin</span></li>
+
+    <li class="menu-item {{ Request::is('admin/master-data') ? 'active open' : '' }}">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-layout"></i>
+        <div data-i18n="Layouts">Data</div>
       </a>
+      <ul class="menu-sub">
+        <li class="menu-item {{ Request::is('admin/') ? 'active' : '' }}">
+          <a href="/admin/" class="menu-link">
+
+            <i class="menu-icon tf-icons bx bx-box"></i>
+            <div data-i18n="Without menu">Data Diri</div>
+          </a>
+        </li>
+
+        <li class="menu-item {{ Request::is('admin/penarik_retribusi') ? 'active' : '' }}">
+          <a href="/admin/penarik_retribusi" class="menu-link">
+
+            <i class="menu-icon tf-icons bx bx-box"></i>
+            <div data-i18n="Without menu">Data Penarik Retribusi</div>
+          </a>
+        </li>
+
+        <li class="menu-item {{ Request::is('admin/penarik_retribusi') ? 'active' : '' }}">
+          <a href="/admin/penarik_retribusi" class="menu-link">
+
+            <i class="menu-icon tf-icons bx bx-box"></i>
+            <div data-i18n="Without menu">Data Izin</div>
+          </a>
+        </li>
+
+        <li class="menu-item {{ Request::is('admin/penarik_retribusi') ? 'active' : '' }}">
+          <a href="/admin/penarik_retribusi" class="menu-link">
+
+            <i class="menu-icon tf-icons bx bx-box"></i>
+            <div data-i18n="Without menu">Data Produk</div>
+          </a>
+        </li>
+      </ul>
     </li>
 
     <li class="menu-header small text-uppercase "><span class="menu-header-text">Developer</span></li>
