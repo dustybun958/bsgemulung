@@ -20,11 +20,11 @@
               <div class="mb-3">
                 <label for="pasar" class="form-label">Pasar</label>
                 <select name="pasar" id="pasar" class="form-control" onchange="handlePasarChange()">
-                  <option value="rejowinangun" {{ old('pasar', $pasar->pasar) == 'rejowinangun' ? 'selected' : '' }}>Rejowinangun</option>
-                  <option value="kebonpolo" {{ old('pasar', $pasar->pasar) == 'kebonpolo' ? 'selected' : '' }}>Kebonpolo</option>
-                  <option value="cacaban" {{ old('pasar', $pasar->pasar) == 'cacaban' ? 'selected' : '' }}>Cacaban</option>
-                  <option value="sidomukti" {{ old('pasar', $pasar->pasar) == 'sidomukti' ? 'selected' : '' }}>Sidomukti</option>
-                  <option value="gotongroyong" {{ old('pasar', $pasar->pasar) == 'gotongroyong' ? 'selected' : '' }}>Gotong Royong</option>
+                  <option value="Rejowinangun" {{ old('pasar', $pasar->pasar) == 'Rejowinangun' ? 'selected' : '' }}>Rejowinangun</option>
+                  <option value="Kebonpolo" {{ old('pasar', $pasar->pasar) == 'Kebonpolo' ? 'selected' : '' }}>Kebonpolo</option>
+                  <option value="Cacaban" {{ old('pasar', $pasar->pasar) == 'Cacaban' ? 'selected' : '' }}>Cacaban</option>
+                  <option value="Sidomukti" {{ old('pasar', $pasar->pasar) == 'Sidomukti' ? 'selected' : '' }}>Sidomukti</option>
+                  <option value="Gotong Royong" {{ old('pasar', $pasar->pasar) == 'Gotong Royong' ? 'selected' : '' }}>Gotong Royong</option>
                 </select>
               </div>
 
@@ -180,23 +180,23 @@
       var pasarValue = this.value;
 
       switch (pasarValue) {
-        case 'rejowinangun':
+        case 'Rejowinangun':
           koordinatElement.value = '-7.485679, 110.221897';
           koordinatElement.readOnly = true;
           break;
-        case 'kebonpolo':
+        case 'Kebonpolo':
           koordinatElement.value = '-7.463964, 110.223667';
           koordinatElement.readOnly = true;
           break;
-        case 'cacaban':
+        case 'Cacaban':
           koordinatElement.value = '-7.476743, 110.211544';
           koordinatElement.readOnly = true;
           break;
-        case 'sidomukti':
+        case 'Sidomukti':
           koordinatElement.value = '-7.491176, 110.221396';
           koordinatElement.readOnly = true;
           break;
-        case 'gotongroyong':
+        case 'Gotong Royong':
           koordinatElement.value = '-7.493941, 110.224530';
           koordinatElement.readOnly = true;
           break;

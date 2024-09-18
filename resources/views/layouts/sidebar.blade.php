@@ -29,12 +29,20 @@
       </a>
     </li>
 
-    <li class="menu-item {{ Request::is('admin/') ? 'active' : '' }}">
-      <a href="/admin/" class="menu-link">
+    <li class="menu-item {{ Request::is('admin/pedagang') ? 'active' : '' }}">
+      <a href="/admin/pedagang" class="menu-link">
         <i class="menu-icon tf-icons bx bx-box"></i>
         <div data-i18n="Without menu">Data Pedagang</div>
       </a>
     </li>
+
+    <li class="menu-item {{ Request::is('admin/data_diri') ? 'active' : '' }}">
+      <a href="/admin/data_diri" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-box"></i>
+        <div data-i18n="Without menu">Data Diri</div>
+      </a>
+    </li>
+
 
 
     <li class="menu-header small text-uppercase "><span class="menu-header-text">Sub Admin</span></li>

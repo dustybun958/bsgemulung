@@ -11,8 +11,8 @@ class Pedagang extends Model
 
     protected $table = 'pedagang';
     protected $primaryKey = 'id_pedagang';
-    public $incrementing = false;
-    public $timestamps = false;
+    public $incrementing = false; // Karena `id_pedagang` bukan auto-increment
+    protected $keyType = 'string'; // Tipe data primary key adalah string
 
     protected $fillable = [
         'id_pedagang',
@@ -26,19 +26,21 @@ class Pedagang extends Model
         'izin'
     ];
 
-    // Relasi many-to-one dengan lapak
+    public $timestamps = false; // Tidak menggunakan timestamps by default
+
+    // Relasi ke model Lapak
     public function lapak()
     {
         return $this->belongsTo(Lapak::class, 'id_lapak', 'id_lapak');
     }
 
-    // Relasi many-to-one dengan data_diri
+    // Relasi ke model DataDiri
     public function dataDiri()
     {
         return $this->belongsTo(DataDiri::class, 'nik', 'nik');
     }
 
-    // Relasi many-to-one dengan penarik_retribusi
+    // Relasi ke model PenarikRetribusi
     public function penarikRetribusi()
     {
         return $this->belongsTo(PenarikRetribusi::class, 'id_penarik_retribusi', 'id_penarik_retribusi');

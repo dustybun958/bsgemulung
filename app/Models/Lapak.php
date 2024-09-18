@@ -10,9 +10,12 @@ class Lapak extends Model
     use HasFactory;
 
     protected $table = 'lapak';
+
     protected $primaryKey = 'id_lapak';
-    public $incrementing = true;
-    public $timestamps = false;
+
+    public $incrementing = false; // Karena id_lapak tidak auto-increment
+    public $timestamps = false; // Menonaktifkan fitur timestamps
+    protected $keyType = 'int'; // Pastikan tipe primary key sesuai dengan tipe data di database
 
     protected $fillable = [
         'id_lapak',
@@ -25,18 +28,12 @@ class Lapak extends Model
         'hadap',
         'luas',
         'tarif_dasar',
-        'status_lapak'
+        'status_lapak',
     ];
 
-    // Relasi many-to-one dengan pasar
+    // Relasi ke model Pasar
     public function pasar()
     {
         return $this->belongsTo(Pasar::class, 'id_pasar', 'id_pasar');
-    }
-
-    // Relasi one-to-many dengan pedagang
-    public function pedagang()
-    {
-        return $this->hasMany(Pedagang::class, 'id_lapak', 'id_lapak');
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminSampahController;
 use App\Http\Controllers\AdminSampahMasukController;
 use App\Http\Controllers\AdminTabunganController;
+use App\Http\Controllers\DataDiriController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\NasabahSaldoController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\LaporanSampahController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\LapakController;
 use App\Http\Controllers\PasarController;
+use App\Http\Controllers\PedagangController;
 use App\Http\Controllers\PenarikRetribusiController;
 use App\Models\Sampah;
 use App\Models\User;
@@ -48,8 +50,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/pasar/{id}/edit', [PasarController::class, 'edit'])->name('pasar.edit');
     Route::put('/admin/pasar/{id}', [PasarController::class, 'update'])->name('pasar.update');
 
-    Route::get('/admin/lapak', [LapakController::class, 'index'])->name('admin.lapak.index');
+    Route::get('/admin/lapak', [LapakController::class, 'index'])->name('lapak.index');
     Route::post('/admin/lapak', [LapakController::class, 'store']);
+    Route::delete('/admin/lapak/{id_lapak}', [LapakController::class, 'destroy'])->name('lapak.destroy');
+    Route::get('/admin/lapak/{id_lapak}/edit', [LapakController::class, 'edit'])->name('lapak.edit');
+    Route::put('/admin/lapak/{id_lapak}', [LapakController::class, 'update'])->name('lapak.update');
+
 
     Route::get('/admin/penarik_retribusi', [PenarikRetribusiController::class, 'index'])->name('penarik_retribusi.index');
     Route::post('/admin/penarik_retribusi', [PenarikRetribusiController::class, 'store']);
@@ -60,6 +66,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/admin/pedagang', [PedagangController::class, 'index'])->name('pedagang.index');
+    Route::post('/admin/pedagang', [PedagangController::class, 'store']);
+    Route::delete('/admin/pedagang/{pasar}', [PedagangController::class, 'destroy'])->name('pedagang.destroy');
+    Route::get('/admin/pedagang/{id}/edit', [PedagangController::class, 'edit'])->name('pedagang.edit');
+    Route::put('/admin/pedagang/{id}', [PedagangController::class, 'update'])->name('pedagang.update');
+
+    Route::get('/admin/data_diri', [DataDiriController::class, 'index'])->name('data_diri.index');
+    Route::post('/admin/data_diri', [DataDiriController::class, 'store']);
+    Route::delete('/admin/data_diri/{nik}', [DataDiriController::class, 'destroy'])->name('data_diri.destroy');
+    Route::get('/admin/data_diri/{nik}/edit', [DataDiriController::class, 'edit'])->name('data_diri.edit');
+    Route::put('/admin/data_diri/{nik}', [DataDiriController::class, 'update'])->name('data_diri.update');
+
+    Route::get('/search-nik', [PedagangController::class, 'searchNik']);
+    Route::get('/search-lapak', [PedagangController::class, 'searchLapak']);
 });
 
 Route::middleware('auth')->group(function () {

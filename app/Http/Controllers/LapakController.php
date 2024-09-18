@@ -9,30 +9,36 @@ use App\Models\Pasar;
 class LapakController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar lapak.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $pasars = Pasar::all(); // Mengambil semua data pasar
-        $lapak = Lapak::with('pasar')->get(); // Mengambil semua data lapak dengan relasi pasar
-        return view('admin.lapak.index', compact('pasars', 'lapak'));
+        // Mengambil semua data pasar
+        $pasars = Pasar::all();
+
+        // Mengambil semua data lapak dengan relasi pasar
+        $lapaks = Lapak::with('pasar')->get();
+
+        return view('admin.lapak.index', compact('pasars', 'lapaks'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk membuat lapak baru.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        $pasars = Pasar::all(); // Mengambil semua data pasar dari tabel 'pasar'
-        return view('admin.lapak.index', compact('pasars')); // Mengirim data pasar ke view
+        // Mengambil semua data pasar dari tabel 'pasar'
+        $pasars = Pasar::all();
+
+        return view('admin.lapak.create', compact('pasars'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan lapak yang baru dibuat.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -41,6 +47,7 @@ class LapakController extends Controller
     {
         // Validasi data
         $request->validate([
+            'id_lapak' => 'required|integer|unique:lapak,id_lapak',
             'id_pasar' => 'required|integer',
             'jenis' => 'required',
             'lantai' => 'required',
@@ -53,45 +60,49 @@ class LapakController extends Controller
             'status_lapak' => 'required',
         ]);
 
-        // Menyimpan data ke dalam tabel lapak
+        // Menyimpan data lapak ke dalam tabel lapak
         Lapak::create($request->all());
 
-        return redirect()->route('admin.lapak.index')->with('success', 'Lapak berhasil ditambahkan.');
+        return redirect()->route('lapak.index')->with('success', 'Lapak berhasil ditambahkan.');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail lapak.
      *
      * @param  \App\Models\Lapak  $lapak
      * @return \Illuminate\Http\Response
      */
     public function show(Lapak $lapak)
     {
-        return view('lapak.show', compact('lapak'));
+        return view('admin.lapak.show', compact('lapak'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form untuk mengedit lapak yang ada.
      *
      * @param  \App\Models\Lapak  $lapak
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lapak $lapak)
+    public function edit($id_lapak)
     {
-        return view('lapak.edit', compact('lapak'));
+        $lapak = Lapak::findOrFail($id_lapak);
+        $pasars = Pasar::all();
+        return view('admin.lapak.edit', compact('lapak', 'pasars'));
     }
 
+
     /**
-     * Update the specified resource in storage.
+     * Memperbarui lapak yang telah ada.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Lapak  $lapak
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lapak $lapak)
+    public function update(Request $request, $id_lapak)
     {
         // Validasi data
         $request->validate([
+            'id_lapak' => 'required|integer',
             'id_pasar' => 'required|integer',
             'jenis' => 'required',
             'lantai' => 'required',
@@ -104,23 +115,28 @@ class LapakController extends Controller
             'status_lapak' => 'required',
         ]);
 
-        // Mengupdate data
+        // Memperbarui data lapak
+        $lapak = Lapak::findOrFail($id_lapak);
         $lapak->update($request->all());
 
         return redirect()->route('lapak.index')->with('success', 'Lapak berhasil diperbarui.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus lapak yang ada.
      *
      * @param  \App\Models\Lapak  $lapak
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lapak $lapak)
+    public function destroy($id_lapak)
     {
-        // Menghapus data
+        // Temukan model berdasarkan ID
+        $lapak = Lapak::findOrFail($id_lapak);
+
+        // Menghapus data lapak
         $lapak->delete();
 
+        // Redirect dengan pesan sukses
         return redirect()->route('lapak.index')->with('success', 'Lapak berhasil dihapus.');
     }
 }

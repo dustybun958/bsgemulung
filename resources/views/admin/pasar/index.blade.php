@@ -24,11 +24,11 @@
                   <label for="pasar" class="form-label">Nama Pasar</label>
                   <select name="pasar" required id="pasar" class="form-control">
                     <option value="" disabled selected>- Pilih Pasar -</option> <!-- Default option -->
-                    <option value="rejowinangun">Rejowinangun</option>
-                    <option value="kebonpolo">Kebonpolo</option>
-                    <option value="cacaban">Cacaban</option>
-                    <option value="sidomukti">Sidomukti</option>
-                    <option value="gotongroyong">Gotong Royong</option>
+                    <option value="Rejowinangun">Rejowinangun</option>
+                    <option value="Kebonpolo">Kebonpolo</option>
+                    <option value="Cacaban">Cacaban</option>
+                    <option value="Sidomukti">Sidomukti</option>
+                    <option value="Gotong Royong">Gotong Royong</option>
                   </select>
                 </div>
 
@@ -302,23 +302,23 @@
       var pasarValue = this.value;
 
       switch (pasarValue) {
-        case 'rejowinangun':
+        case 'Rejowinangun':
           koordinatElement.value = '-7.485679, 110.221897';
           koordinatElement.readOnly = true;
           break;
-        case 'kebonpolo':
+        case 'Kebonpolo':
           koordinatElement.value = '-7.463964, 110.223667';
           koordinatElement.readOnly = true;
           break;
-        case 'cacaban':
+        case 'Cacaban':
           koordinatElement.value = '-7.476743, 110.211544';
           koordinatElement.readOnly = true;
           break;
-        case 'sidomukti':
+        case 'Sidomukti':
           koordinatElement.value = '-7.491176, 110.221396';
           koordinatElement.readOnly = true;
           break;
-        case 'gotongroyong':
+        case 'Gotong Royong':
           koordinatElement.value = '-7.493941, 110.224530';
           koordinatElement.readOnly = true;
           break;

@@ -22,8 +22,14 @@
               <div class="modal-body">
                 <div class="mb-3">
                   <div class="mb-3">
+                    <label for="id_penarik_retribusi" class="form-label">Id Penarik Retribusi</label>
+                    <input type="number" required class="form-control" name="id_penarik_retribusi" id="id_penarik_retribusi" min="0" max="9999" oninput="validateInput(this)">
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control" name="nama">
+                    <input type="text" required class="form-control" name="nama">
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -43,34 +49,31 @@
             <table class="table table-hover" id="myTable">
               <thead>
                 <tr>
-                  <th>Id Penarik Retribusi</th>
-                  <th>Nama</th>
-                  <th>Aksi</th>
+                  <th class="text-start">No</th>
+                  <th class="text-start">Id Penarik Retribusi</th>
+                  <th class="text-start">Nama</th>
+                  <th class="text-start">Aksi</th>
                 </tr>
               </thead>
               <tbody class="table-border-bottom-0">
                 @foreach ($penarik_retribusi as $data)
                 <tr>
-                  <td>{{ $loop->iteration }}</td>
-                  <td>{{ $data->nama }}</td>
-
+                  <td class="text-start">{{ $loop->iteration }}</td>
+                  <td class="text-start">{{ $data->id_penarik_retribusi }}</td>
+                  <td class="text-start">{{ $data->nama }}</td>
                   <td>
-                    {{-- <a href="{{ route('sampah.edit', $data->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a> --}}
-                    <div class="d-flex justify-content-between align-items-center">
-                      <a href="{{ route('penarik_retribusi.edit', $data->	id_penarik_retribusi) }}" class="btn btn-warning btn-sm">
+                    <div class="align-items-center">
+                      <a href="{{ route('penarik_retribusi.edit', $data->id_penarik_retribusi) }}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i> Edit
                       </a>
-                      <form id="delete-form-{{ $data->	id_penarik_retribusi }}" action="/admin/penarik_retribusi/{{ $data->	id_penarik_retribusi }}" method="POST" class="d-inline-flex align-items-center m-0 p-0 ms-2">
+                      <form id="delete-form-{{ $data->id_penarik_retribusi }}" action="/admin/penarik_retribusi/{{ $data->id_penarik_retribusi }}" method="POST" class="d-inline-flex align-items-center m-0 p-0 ms-2">
                         @csrf
                         @method('DELETE')
-                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $data->	id_penarik_retribusi }})">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $data->id_penarik_retribusi }})">
                           <i class="fas fa-trash"></i> Hapus
                         </button>
                       </form>
                     </div>
-
-                    {{-- <a data-confirm-delete="true" href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a> --}}
-
                   </td>
                 </tr>
                 @endforeach
@@ -111,6 +114,15 @@
         document.getElementById('delete-form-' + id).submit();
       }
     });
+  }
+
+</script>
+<script>
+  function validateInput(element) {
+    const value = element.value;
+    if (value.length > 4) {
+      element.value = value.slice(0, 4);
+    }
   }
 
 </script>

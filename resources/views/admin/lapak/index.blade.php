@@ -21,6 +21,13 @@
               </div>
               <div class="modal-body">
                 <div class="mb-3">
+                  <div class="mb-3">
+                    <label for="id_lapak" class="form-label">ID Lapak</label>
+                    <input type="number" required class="form-control" name="id_lapak" id="id_lapak" min="0" max="99999" oninput="validateInput(this)">
+                  </div>
+                </div>
+
+                <div class="mb-3">
                   <label for="pasar" class="form-label">Nama Pasar</label>
                   <select name="id_pasar" required id="pasar" class="form-control">
                     <option value="" disabled selected>- Pilih Pasar -</option> <!-- Default option -->
@@ -84,7 +91,8 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="no" class="form-label">No</label>
-                    <input type="text" class="form-control" name="no">
+                    <input type="number" class="form-control" name="no" id="no" min="0" max="99999" oninput="validateInput(this)">
+
                   </div>
                 </div>
                 <div class="mb-3">
@@ -99,13 +107,13 @@
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="luas" class="form-label">Luas</label>
-                    <input type="text" class="form-control" name="luas">
+                    <input type="number" class="form-control" name="luas" id="luas" min="0" max="99999" oninput="validateInput(this)">
                   </div>
                 </div>
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="tarif_dasar" class="form-label">Tarif Dasar</label>
-                    <input type="text" class="form-control" name="tarif_dasar">
+                    <input type="number" class="form-control" name="tarif_dasar" id="tarif_dasar" min="0">
                   </div>
                 </div>
                 <div class="mb-3">
@@ -133,38 +141,40 @@
             <table class="table table-hover" id="myTable">
               <thead>
                 <tr>
-                  <th>Id Lapak</th>
-                  <th>Nama Pasar</th>
-                  <th>Jenis</th>
-                  <th>Lantai</th>
-                  <th>Blok</th>
-                  <th>Zonasi</th>
-                  <th>No</th>
-                  <th>Hadap</th>
-                  <th>Luas</th>
-                  <th>Tarif Dasar</th>
-                  <th>Status Lapak</th>
-                  <th>Aksi</th>
+                  <th class="text-start">No</th>
+                  <th class="text-start">Id Lapak</th>
+                  <th class="text-start">Nama Pasar</th>
+                  <th class="text-start">Jenis</th>
+                  <th class="text-start">Lantai</th>
+                  <th class="text-start">Blok</th>
+                  <th class="text-start">Zonasi</th>
+                  <th class="text-start">No</th>
+                  <th class="text-start">Hadap</th>
+                  <th class="text-start">Luas</th>
+                  <th class="text-start">Tarif Dasar</th>
+                  <th class="text-start">Status Lapak</th>
+                  <th class="text-start">Aksi</th>
                 </tr>
               </thead>
               <tbody class="table-border-bottom-0">
-                @foreach ($lapak as $data)
+                @foreach ($lapaks as $data)
                 <tr>
-                  <td>{{ $loop->iteration }}</td>
-                  <td>{{ $data->pasar->pasar }}</td>
-                  <td>{{ $data->jenis }}</td>
-                  <td>{{ $data->lantai }}</td>
-                  <td>{{ $data->blok }}</td>
-                  <td>{{ $data->zonasi }}</td>
-                  <td>{{ $data->no }}</td>
-                  <td>{{ $data->hadap }}</td>
-                  <td>{{ $data->luas }}</td>
-                  <td>{{ $data->tarif_dasar }}</td>
-                  <td>{{ $data->status_lapak }}</td>
-                  <td>
+                  <td class="text-start">{{ $loop->iteration }}</td>
+                  <td class="text-start">{{ $data->id_lapak }}</td>
+                  <td class="text-start">{{ $data->pasar->pasar }}</td>
+                  <td class="text-start">{{ $data->jenis }}</td>
+                  <td class="text-start">{{ $data->lantai }}</td>
+                  <td class="text-start">{{ $data->blok }}</td>
+                  <td class="text-start">{{ $data->zonasi }}</td>
+                  <td class="text-start">{{ $data->no }}</td>
+                  <td class="text-start">{{ $data->hadap }}</td>
+                  <td class="text-start">{{ $data->luas }}</td>
+                  <td class="text-start">{{ $data->tarif_dasar }}</td>
+                  <td class="text-start">{{ $data->status_lapak }}</td>
+                  <td class="text-start">
                     {{-- <a href="{{ route('sampah.edit', $data->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a> --}}
-                    <div class="d-flex justify-content-between align-items-center">
-                      <a href="{{ route('pasar.edit', $data->id_lapak) }}" class="btn btn-warning btn-sm">
+                    <div class="align-items-center">
+                      <a href="{{ route('lapak.edit', $data->id_lapak) }}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i> Edit
                       </a>
                       <form id="delete-form-{{ $data->id_lapak }}" action="/admin/lapak/{{ $data->id_lapak }}" method="POST" class="d-inline-flex align-items-center m-0 p-0 ms-2">
@@ -203,11 +213,13 @@
 
 </script>
 @endpush
+@push('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-  function confirmDelete(id) {
+  function confirmDelete(nik) {
     Swal.fire({
       title: 'Yakin ingin menghapus?'
-      , text: "You won't be able to revert this!"
+      , text: "Data yang sudah dihapus tidak bisa dikembalikan!"
       , icon: 'warning'
       , showCancelButton: true
       , confirmButtonColor: '#3085d6'
@@ -215,9 +227,19 @@
       , confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
       if (result.isConfirmed) {
-        document.getElementById('delete-form-' + id).submit();
+        document.getElementById('delete-form-' + nik).submit();
       }
     });
+  }
+
+</script>
+@endpush
+<script>
+  function validateInput(element) {
+    const value = element.value;
+    if (value.length > 5) {
+      element.value = value.slice(0, 5);
+    }
   }
 
 </script>
