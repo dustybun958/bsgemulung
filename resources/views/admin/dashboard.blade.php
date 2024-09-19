@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
   <div class="row">
-    <div class="col-lg-3 col-md-12 col-6 mb-4">
+    <div class="col-lg-4 col-md-12 col-6 mb-4">
       <div class="card">
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-12 col-6 mb-4">
+    <div class="col-lg-4 col-md-12 col-6 mb-4">
       <div class="card">
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-12 col-6 mb-4">
+    <div class="col-lg-4 col-md-12 col-6 mb-4">
       <div class="card">
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">

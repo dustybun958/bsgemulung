@@ -5,9 +5,7 @@
   <div class="menu-inner-shadow"></div>
   <ul class="menu-inner py-1">
 
-
-
-    <li class="menu-item {{ Request::is('admin/dashboard') ? 'active open' : '' }}">
+    <li class="menu-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
       <a href="/admin/dashboard" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Dashboard</div>
@@ -36,21 +34,12 @@
       </a>
     </li>
 
-    <li class="menu-item {{ Request::is('admin/data_diri') ? 'active' : '' }}">
-      <a href="/admin/data_diri" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-box"></i>
-        <div data-i18n="Without menu">Data Diri</div>
-      </a>
-    </li>
-
-
-
     <li class="menu-header small text-uppercase "><span class="menu-header-text">Sub Admin</span></li>
 
     <li class="menu-item {{ Request::is('admin/master-data') ? 'active open' : '' }}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Layouts">Data</div>
+        <div data-i18n="Layouts">Sub Data</div>
       </a>
       <ul class="menu-sub">
         <li class="menu-item {{ Request::is('admin/penarik_retribusi') ? 'active' : '' }}">
@@ -69,9 +58,15 @@
           </a>
         </li>
 
+        <li class="menu-item {{ Request::is('admin/data_diri') ? 'active' : '' }}">
+          <a href="/admin/data_diri" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-box"></i>
+            <div data-i18n="Without menu">Data Diri</div>
+          </a>
+        </li>
+
         <li class="menu-item {{ Request::is('admin/alamat') ? 'active' : '' }}">
           <a href="/admin/alamat" class="menu-link">
-
             <i class="menu-icon tf-icons bx bx-box"></i>
             <div data-i18n="Without menu">Data Alamat</div>
           </a>
@@ -79,11 +74,11 @@
       </ul>
     </li>
 
-    <li class="menu-header small text-uppercase "><span class="menu-header-text">Developer</span></li>
+    {{-- <li class="menu-header small text-uppercase "><span class="menu-header-text">Developer</span></li>
     <li class="menu-item {{ Request::is('admin/developer') ? 'active' : '' }}">
       <a href="/admin/developer" class="menu-link">
         <div data-i18n="tabungan-sampah"><i class="fas fa-code"></i> Developer</div>
       </a>
-    </li>
+    </li> --}}
   </ul>
 </aside>

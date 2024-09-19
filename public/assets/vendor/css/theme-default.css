@@ -496,7 +496,7 @@ button.list-group-item-primary.active {
 .menu.bg-primary .menu-link,
 .menu.bg-primary .menu-horizontal-prev,
 .menu.bg-primary .menu-horizontal-next {
-    color: #e0e1ff;
+    color: #555;
 }
 .menu.bg-primary .menu-link:hover,
 .menu.bg-primary .menu-link:focus,
@@ -520,7 +520,7 @@ button.list-group-item-primary.active {
 .menu.bg-primary .menu-item.active > .menu-link {
     color: #fff;
 }
-.menu.bg-primary .menu-item.active > .menu-link:not(.menu-toggle) {
+.menu.bg-primary .menu-item.active > .menu-link:not(.menu-togglae) {
     background-color: #ffa500;
 }
 .menu.bg-primary.menu-horizontal
@@ -560,7 +560,8 @@ button.list-group-item-primary.active {
     color: #fff;
 }
 .menu.bg-primary .menu-header {
-    color: #c2c4ff;
+    color: #000;
+    font-weight: bold;
 }
 .menu.bg-primary hr,
 .menu.bg-primary .menu-divider,
@@ -571,7 +572,8 @@ button.list-group-item-primary.active {
     background-color: rgba(255, 255, 255, 0.15);
 }
 .menu.bg-primary .menu-block::before {
-    background-color: #c2c4ff;
+    background-color: #000;
+    font-weight: bold;
 }
 .menu.bg-primary
     .menu-inner

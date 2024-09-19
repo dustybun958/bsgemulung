@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>Bank Sampah Dusun Gemulung</title>
+  <title>DPPKUM Kota Magelang</title>
 
   <meta name="description" content="" />
 
@@ -15,6 +15,7 @@
 
   <!-- Icons. Uncomment required icon fonts -->
   <link rel="stylesheet" href="/assets/vendor/fonts/boxicons.css" />
+  <link rel="icon" type="image/svg" href="/assets/img/logo-kota-magelang.svg" />
 
   <!-- Core CSS -->
   <link rel="stylesheet" href="/assets/vendor/css/core.css" class="template-customizer-core-css" />

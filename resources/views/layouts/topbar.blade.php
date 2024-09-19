@@ -7,13 +7,18 @@
 
   <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
     <!-- Search -->
-    <div class="navbar-nav align-items-center">
+    {{-- <div class="navbar-nav align-items-center">
       <div class="nav-item d-flex align-items-center">
         <i class="bx bx-search fs-4 lh-0"></i>
         <input type="text" class="form-control border-0 shadow-none" placeholder="Cari..." aria-label="Cari..." />
       </div>
-    </div>
+    </div> --}}
     <!-- /Search -->
+    <div class="navbar-nav align-items-center">
+      <div class="nav-item d-flex align-items-center">
+        <h2 class="m-0 p-0 text-primary" style="font-weight: bold">UNIT PASAR DPPKUM KOTA MAGELANG</h2>
+      </div>
+    </div>
 
     <ul class="navbar-nav flex-row align-items-center ms-auto">
       <!-- Place this tag where you want the button to render. -->
