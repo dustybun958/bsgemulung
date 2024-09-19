@@ -83,7 +83,7 @@
 
                   <td>
                     {{-- <a href="{{ route('sampah.edit', $data->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a> --}}
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="align-items-center">
                       <a href="{{ route('izin.edit', $data->id_izin) }}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i> Edit
                       </a>

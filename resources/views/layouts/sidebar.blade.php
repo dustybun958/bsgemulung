@@ -15,21 +15,21 @@
 
     <li class="menu-item {{ Request::is('admin/pasar') ? 'active' : '' }}">
       <a href="/admin/pasar" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-box"></i>
+        <i class="menu-icon tf-icons bx bx-buildings"></i>
         <div data-i18n="Without menu">Data Pasar</div>
       </a>
     </li>
 
     <li class="menu-item {{ Request::is('admin/lapak') ? 'active' : '' }}">
       <a href="/admin/lapak" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-box"></i>
+        <i class="menu-icon tf-icons bx bx-store"></i>
         <div data-i18n="Without menu">Data Lapak</div>
       </a>
     </li>
 
     <li class="menu-item {{ Request::is('admin/pedagang') ? 'active' : '' }}">
       <a href="/admin/pedagang" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-box"></i>
+        <i class="menu-icon tf-icons bx bx-group"></i>
         <div data-i18n="Without menu">Data Pedagang</div>
       </a>
     </li>
@@ -45,7 +45,7 @@
         <li class="menu-item {{ Request::is('admin/penarik_retribusi') ? 'active' : '' }}">
           <a href="/admin/penarik_retribusi" class="menu-link">
 
-            <i class="menu-icon tf-icons bx bx-box"></i>
+            <i class="menu-icon tf-icons bx bx-wallet"></i>
             <div data-i18n="Without menu">Data Penarik Retribusi</div>
           </a>
         </li>
@@ -53,21 +53,22 @@
         <li class="menu-item {{ Request::is('admin/izin') ? 'active' : '' }}">
           <a href="/admin/izin" class="menu-link">
 
-            <i class="menu-icon tf-icons bx bx-box"></i>
+            {{-- <i class="menu-icon tf-icons bx bx-file"></i> --}}
+            <i class="menu-icon tf-icons bx bx-check-shield"></i>
             <div data-i18n="Without menu">Data Izin</div>
           </a>
         </li>
 
         <li class="menu-item {{ Request::is('admin/data_diri') ? 'active' : '' }}">
           <a href="/admin/data_diri" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-box"></i>
+            <i class="menu-icon tf-icons bx bx-user"></i>
             <div data-i18n="Without menu">Data Diri</div>
           </a>
         </li>
 
         <li class="menu-item {{ Request::is('admin/alamat') ? 'active' : '' }}">
           <a href="/admin/alamat" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-box"></i>
+            <i class="menu-icon tf-icons bx bx-map"></i>
             <div data-i18n="Without menu">Data Alamat</div>
           </a>
         </li>

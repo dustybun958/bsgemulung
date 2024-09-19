@@ -1,16 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AdminSampahController;
-use App\Http\Controllers\AdminSampahMasukController;
-use App\Http\Controllers\AdminTabunganController;
 use App\Http\Controllers\DataDiriController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\NasabahController;
-use App\Http\Controllers\NasabahSaldoController;
-use App\Http\Controllers\NasabahSampahController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\LaporanSampahController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\LapakController;
 use App\Http\Controllers\PasarController;
@@ -22,8 +13,6 @@ use App\Models\Pasar;
 use App\Models\Lapak;
 use App\Models\Pedagang;
 use App\Models\Alamat;
-use App\Models\Sampah;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -101,16 +90,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/search-nik', [PedagangController::class, 'searchNik']);
     Route::get('/search-lapak', [PedagangController::class, 'searchLapak']);
 });
-
-Route::middleware('auth')->group(function () {
-    // Rute lainnya...
-
-    Route::put('/admin/sampah/{sampah}', [AdminSampahController::class, 'update'])->name('sampah.update');
-});
-
-Route::get('/laporan/sampah', [LaporanSampahController::class, 'index']);
-Route::get('/laporan/sampah/cetak/term/{term}', [LaporanSampahController::class, 'cetak']);
-Route::get('/laporan/sampah/cetak/{sampah}', [LaporanSampahController::class, 'cetakPerUser'])->name('laporan.sampah.cetak.peruser');
 
 Route::get('/admin/developer', [DeveloperController::class, 'index'])->name('developer.index');
 

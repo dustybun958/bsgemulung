@@ -490,7 +490,7 @@ button.list-group-item-primary.active {
 }
 
 .menu.bg-primary {
-    background-color: #ffa500 !important;
+    background-color: #ff8c00 !important;
     color: #e0e1ff;
 }
 .menu.bg-primary .menu-link,
@@ -521,7 +521,7 @@ button.list-group-item-primary.active {
     color: #fff;
 }
 .menu.bg-primary .menu-item.active > .menu-link:not(.menu-togglae) {
-    background-color: #ffa500;
+    background-color: #ff8c00;
 }
 .menu.bg-primary.menu-horizontal
     .menu-sub
