@@ -53,14 +53,6 @@
         <div data-i18n="Layouts">Data</div>
       </a>
       <ul class="menu-sub">
-        <li class="menu-item {{ Request::is('admin/') ? 'active' : '' }}">
-          <a href="/admin/" class="menu-link">
-
-            <i class="menu-icon tf-icons bx bx-box"></i>
-            <div data-i18n="Without menu">Data Diri</div>
-          </a>
-        </li>
-
         <li class="menu-item {{ Request::is('admin/penarik_retribusi') ? 'active' : '' }}">
           <a href="/admin/penarik_retribusi" class="menu-link">
 
@@ -69,19 +61,19 @@
           </a>
         </li>
 
-        <li class="menu-item {{ Request::is('admin/penarik_retribusi') ? 'active' : '' }}">
-          <a href="/admin/penarik_retribusi" class="menu-link">
+        <li class="menu-item {{ Request::is('admin/izin') ? 'active' : '' }}">
+          <a href="/admin/izin" class="menu-link">
 
             <i class="menu-icon tf-icons bx bx-box"></i>
             <div data-i18n="Without menu">Data Izin</div>
           </a>
         </li>
 
-        <li class="menu-item {{ Request::is('admin/penarik_retribusi') ? 'active' : '' }}">
-          <a href="/admin/penarik_retribusi" class="menu-link">
+        <li class="menu-item {{ Request::is('admin/alamat') ? 'active' : '' }}">
+          <a href="/admin/alamat" class="menu-link">
 
             <i class="menu-icon tf-icons bx bx-box"></i>
-            <div data-i18n="Without menu">Data Produk</div>
+            <div data-i18n="Without menu">Data Alamat</div>
           </a>
         </li>
       </ul>

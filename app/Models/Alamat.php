@@ -19,6 +19,7 @@ class Alamat extends Model
         'kab_kota',
         'kecamatan',
         'Kelurahan'
+
     ];
 
     // Relasi one-to-many dengan data_diri

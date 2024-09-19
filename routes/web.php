@@ -16,6 +16,12 @@ use App\Http\Controllers\LapakController;
 use App\Http\Controllers\PasarController;
 use App\Http\Controllers\PedagangController;
 use App\Http\Controllers\PenarikRetribusiController;
+use App\Http\Controllers\IzinController;
+use App\Http\Controllers\AlamatController;
+use App\Models\Pasar;
+use App\Models\Lapak;
+use App\Models\Pedagang;
+use App\Models\Alamat;
 use App\Models\Sampah;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -38,8 +44,10 @@ Route::get('/', function () {
 
 
 Route::get('/admin/dashboard', function () {
-    // $totalNasabah = User::role('nasabah')->count();
-    return view('admin.dashboard');
+    $totalpasar = Pasar::count();
+    $totallapak = Lapak::count();
+    $totalpedagang = Pedagang::count();
+    return view('admin.dashboard', compact('totalpasar', 'totallapak', 'totalpedagang'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -56,6 +64,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/lapak/{id_lapak}/edit', [LapakController::class, 'edit'])->name('lapak.edit');
     Route::put('/admin/lapak/{id_lapak}', [LapakController::class, 'update'])->name('lapak.update');
 
+    Route::get('/admin/izin', [IzinController::class, 'index'])->name('izin.index');
+    Route::post('/admin/izin', [IzinController::class, 'store']);
+    Route::delete('/admin/izin/{id_izin}', [IzinController::class, 'destroy'])->name('izin.destroy');
+    Route::get('/admin/izin/{id_izin}/edit', [IzinController::class, 'edit'])->name('izin.edit');
+    Route::put('/admin/izin/{id_izin}', [IzinController::class, 'update'])->name('izin.update');
+
+    Route::get('/admin/alamat', [AlamatController::class, 'index'])->name('alamat.index');
+    Route::post('/admin/alamat', [AlamatController::class,'store']);
+    Route::delete('/admin/alamat/{id_alamat}', [AlamatController::class, 'destroy'])->name('alamat.destroy');
+    Route::get('/admin/alamat/{id_alamat}/edit', [AlamatController::class, 'edit'])->name('alamat.edit');
+    Route::put('/admin/alamat/{id_alamat}', [AlamatController::class, 'update'])->name('alamat.update');
 
     Route::get('/admin/penarik_retribusi', [PenarikRetribusiController::class, 'index'])->name('penarik_retribusi.index');
     Route::post('/admin/penarik_retribusi', [PenarikRetribusiController::class, 'store']);
