@@ -7,9 +7,29 @@
   <div class="row">
     <div class="col-md-12">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> Tambah Pasar
+      <div class="d-flex">
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> Tambah Pasar
+        </button>
+        <button onclick="window.open('{{route('cetak-pasar')}}', '_blank')" class="btn btn-secondary mb-3 ms-2"><i class="fas fa-file-pdf"></i> Cetak Data Pasar</button>
+        {{-- <style>
+          .btn-adobe-hover:hover {
+              background-color: #8a1515; /* Darker red for hover */
+              border-color: #8a1515;     /* Darker border for hover */
+          }
+      </style>
+      
+      <button 
+          onclick="window.open('{{route('cetak-pasar')}}', '_blank')" 
+          class="btn mb-3 ms-2 btn-adobe-hover" 
+          style="background-color: #ac1b1b; border-color: #ac1b1b; color: #ffffff;">
+          <i class="fas fa-file-pdf"></i> Cetak Data Pasar
+      </button> --}}
+      
+
       </button>
-      <a href="{{route('cetak-pasar')}}" target="_blank" class="btn btn-primary mb-3"><i class="fas fa-print"></i> Cetak Data Pasar</a>
+      
+      </div>
+    
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
