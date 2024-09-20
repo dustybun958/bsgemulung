@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/pasar/{pasar}', [PasarController::class, 'destroy'])->name('pasar.destroy');
     Route::get('/admin/pasar/{id}/edit', [PasarController::class, 'edit'])->name('pasar.edit');
     Route::put('/admin/pasar/{id}', [PasarController::class, 'update'])->name('pasar.update');
+    Route::get('/admin/cetak-pasar', [PasarController::class, 'cetakPasar'])->name('cetak-pasar');
 
     Route::get('/admin/lapak', [LapakController::class, 'index'])->name('lapak.index');
     Route::post('/admin/lapak', [LapakController::class, 'store']);
@@ -60,7 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/izin/{id_izin}', [IzinController::class, 'update'])->name('izin.update');
 
     Route::get('/admin/alamat', [AlamatController::class, 'index'])->name('alamat.index');
-    Route::post('/admin/alamat', [AlamatController::class,'store']);
+    Route::post('/admin/alamat', [AlamatController::class, 'store']);
     Route::delete('/admin/alamat/{id_alamat}', [AlamatController::class, 'destroy'])->name('alamat.destroy');
     Route::get('/admin/alamat/{id_alamat}/edit', [AlamatController::class, 'edit'])->name('alamat.edit');
     Route::put('/admin/alamat/{id_alamat}', [AlamatController::class, 'update'])->name('alamat.update');

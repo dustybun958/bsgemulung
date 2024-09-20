@@ -17,6 +17,12 @@ class PasarController extends Controller
         return view('admin.pasar.index', compact('pasar'));
     }
 
+    public function cetakPasar()
+    {
+        $pasar = Pasar::all();
+        return view('admin.pasar.cetak-pasar', compact('pasar'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

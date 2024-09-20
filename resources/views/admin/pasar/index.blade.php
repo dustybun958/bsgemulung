@@ -9,6 +9,7 @@
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> Tambah Pasar
       </button>
+      <a href="{{route('cetak-pasar')}}" target="_blank" class="btn btn-primary mb-3"><i class="fas fa-print"></i> Cetak Data Pasar</a>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -267,7 +268,6 @@
   new DataTable('#myTable', {
     scrollX: true
   });
-
 </script>
 @endpush
 @push('js')
@@ -275,20 +275,19 @@
 <script>
   function confirmDelete(id) {
     Swal.fire({
-      title: 'Yakin ingin menghapus?'
-      , text: "Data yang sudah dihapus tidak bisa dikembalikan!"
-      , icon: 'warning'
-      , showCancelButton: true
-      , confirmButtonColor: '#3085d6'
-      , cancelButtonColor: '#d33'
-      , confirmButtonText: 'Ya, hapus!'
+      title: 'Yakin ingin menghapus?',
+      text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
       if (result.isConfirmed) {
         document.getElementById('delete-form-' + id).submit();
       }
     });
   }
-
 </script>
 @endpush
 
@@ -329,6 +328,5 @@
       }
     });
   });
-
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
