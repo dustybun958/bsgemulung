@@ -8,17 +8,11 @@
     <div class="col-md-12">
       <!-- Button trigger modal -->
       <div class="d-flex gap-2 mb-3">
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <i class="fas fa-plus"></i> Tambah Alamat
         </button>
 
-        <button
-          class="btn btn-secondary"
-          onclick="window.open('{{ route('form-alamat') }}', '_blank')">
+        <button class="btn btn-secondary" onclick="window.open('{{ route('form-alamat') }}', '_blank')">
           <i class="fas fa-print"></i> Cetak Data
         </button>
       </div>
@@ -120,7 +114,7 @@
 
                   <td>
                     {{-- <a href="{{ route('sampah.edit', $data->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a> --}}
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="align-items-center">
                       <a href="{{ route('alamat.edit', $data->	kode_alamat) }}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i> Edit
                       </a>
