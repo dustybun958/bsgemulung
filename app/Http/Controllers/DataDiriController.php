@@ -17,6 +17,12 @@ class DataDiriController extends Controller
         return view('admin.data_diri.index', compact('dataDiri', 'alamats'));
     }
 
+    public function formDiri()
+    {
+        $dataDiri = DataDiri::all();
+        return view('admin.data_diri.form-diri', compact('dataDiri'));
+    }
+
     // Menampilkan form untuk membuat data diri baru
     public function create()
     {

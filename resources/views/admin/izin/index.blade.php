@@ -7,8 +7,21 @@
   <div class="row">
     <div class="col-md-12">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> Tambah Izin
-      </button>
+      <div class="d-flex gap-2 mb-3">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+          <i class="fas fa-plus"></i> Tambah Izin
+        </button>
+
+        <button
+          class="btn btn-secondary"
+          onclick="window.open('{{ route('form-izin') }}', '_blank')">
+          <i class="fas fa-print"></i> Cetak Data
+        </button>
+      </div>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

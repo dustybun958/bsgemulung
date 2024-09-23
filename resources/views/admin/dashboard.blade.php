@@ -8,8 +8,10 @@
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
             <div class="avatar flex-shrink-0">
-              {{-- <i class="bx bx-box" style="color: #ffa500"></i> --}}
-              <i class="bx bx-buildings" style="color: #ffa500"></i>
+              <!-- Bungkus ikon dengan elemen <a> agar dapat diklik -->
+              <a href="/admin/pasar">
+                <i class="bx bx-buildings" style="color: #2A6DA5; cursor: pointer;"></i>
+              </a>
             </div>
           </div>
           <span>Total Pasar</span>
@@ -19,13 +21,16 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-lg-4 col-md-12 col-6 mb-4">
       <div class="card">
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
             <div class="avatar flex-shrink-0">
-              <i class="bx bx-store" style="color: #ffa500"></i>
+              <!-- Bungkus ikon dengan elemen <a> agar dapat diklik -->
+              <a href="/admin/lapak">
+                <i class="bx bx-store" style="color: #2A6DA5; cursor: pointer;"></i>
+              </a>
             </div>
           </div>
           <span>Total Lapak</span>
@@ -35,13 +40,16 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-lg-4 col-md-12 col-6 mb-4">
       <div class="card">
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
             <div class="avatar flex-shrink-0">
-              <i class="bx bx-group" style="color: #ffa500"></i>
+              <!-- Bungkus ikon dengan elemen <a> agar dapat diklik -->
+              <a href="/admin/pedagang">
+                <i class="bx bx-group" style="color: #2A6DA5; cursor: pointer;"></i>
+              </a>
             </div>
           </div>
           <span>Total Pedagang</span>

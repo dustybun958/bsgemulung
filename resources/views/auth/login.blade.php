@@ -46,11 +46,9 @@
         <div class="card">
           <div class="card-body">
             <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-              <img src="{{ asset('assets/img/dppkum.jpg') }}" alt="logo-dppkum" style="width: 350px; margin-bottom: 10px;">
-              <h4 class="mb-3 fw-bold mt-2" style="background: linear-gradient(to right, #FF4500, #FFA500); background-clip: text; color: transparent;">
-
-
-                Unit Pasar <br>DPPKUM Kota Magelang</h4>
+              <img src="{{ asset('assets/img/logo-dppkum.png') }}" alt="logo-dppkum" style="width: 230px; margin-bottom: 16px;">
+              <!-- <h5 class="mb-3 fw-bold mt-2" style="text-align:center; background: #19497D; background-clip: text; color: transparent;">
+                Unit Pasar <br> Kota Magelang</h5> -->
             </div>
             <x-auth-session-status class="mb-4" :status="session('status')" />
             <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
@@ -72,7 +70,7 @@
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
               </div>
               <div class="mb-3">
-                <button class="btn d-grid w-100 mb-2" type="submit" style="background-color: #F7AE01; color: #ffffff;">Log
+                <button class="btn d-grid w-100 mb-2" type="submit" style="background-color: #19497D; color: #ffffff;">Log
 
 
                   in</button>

@@ -16,6 +16,12 @@ class AlamatController extends Controller
         return view('admin.alamat.index', compact('alamat'));
     }
 
+    public function formAlamat()
+    {
+        $alamat = Alamat::all();
+        return view('admin.alamat.form-alamat', compact('alamat'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */

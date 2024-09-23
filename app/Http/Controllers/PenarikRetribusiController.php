@@ -16,6 +16,12 @@ class PenarikRetribusiController extends Controller
         return view('admin.penarik_retribusi.index', compact('penarik_retribusi'));
     }
 
+    public function formPenarik()
+    {
+        $penarik_retribusi = PenarikRetribusi::all();
+        return view('admin.penarik_retribusi.form-penarik', compact('penarik_retribusi'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */

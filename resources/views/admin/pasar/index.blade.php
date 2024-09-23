@@ -7,29 +7,16 @@
   <div class="row">
     <div class="col-md-12">
       <!-- Button trigger modal -->
-      <div class="d-flex">
-        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> Tambah Pasar
+      <div class="d-flex gap-2 mb-3">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fas fa-plus"></i> Tambah Pasar
         </button>
-        <button onclick="window.open('{{route('cetak-pasar')}}', '_blank')" class="btn btn-secondary mb-3 ms-2"><i class="fas fa-file-pdf"></i> Cetak Data Pasar</button>
-        {{-- <style>
-          .btn-adobe-hover:hover {
-              background-color: #8a1515; /* Darker red for hover */
-              border-color: #8a1515;     /* Darker border for hover */
-          }
-      </style>
-      
-      <button 
-          onclick="window.open('{{route('cetak-pasar')}}', '_blank')" 
-          class="btn mb-3 ms-2 btn-adobe-hover" 
-          style="background-color: #ac1b1b; border-color: #ac1b1b; color: #ffffff;">
-          <i class="fas fa-file-pdf"></i> Cetak Data Pasar
-      </button> --}}
-      
 
-      </button>
-      
+        <button class="btn btn-secondary" onclick="window.open('{{ route('cetak-pasar') }}', '_blank')">
+          <i class="fas fa-print"></i> Cetak Data
+        </button>
       </div>
-    
+
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -288,6 +275,7 @@
   new DataTable('#myTable', {
     scrollX: true
   });
+
 </script>
 @endpush
 @push('js')
@@ -295,19 +283,20 @@
 <script>
   function confirmDelete(id) {
     Swal.fire({
-      title: 'Yakin ingin menghapus?',
-      text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya, hapus!'
+      title: 'Yakin ingin menghapus?'
+      , text: "Data yang sudah dihapus tidak bisa dikembalikan!"
+      , icon: 'warning'
+      , showCancelButton: true
+      , confirmButtonColor: '#3085d6'
+      , cancelButtonColor: '#d33'
+      , confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
       if (result.isConfirmed) {
         document.getElementById('delete-form-' + id).submit();
       }
     });
   }
+
 </script>
 @endpush
 
@@ -348,5 +337,6 @@
       }
     });
   });
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
