@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+  .bg-active {
+      background-color: #A7F3D0; /* Warna hijau mint (sesuai gambar) */
+      color: #1C8B69; /* Teks warna hijau tua */
+  }
+
+  .bg-offline {
+      background-color: #FECACA; /* Warna merah muda (sesuai gambar) */
+      color: #B91C1C; /* Teks warna merah tua */
+  }
+</style>
+
 <div class="container-xxl flex-grow-1 container-p-y">
   <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Input Pedagang</h4>
 
@@ -123,11 +136,11 @@
                   <td class="text-start">{{$data->check_in}}</td>
                   <td class="text-start">{{$data->check_out}}</td>
                   <td class="text-start">
-                    <span class="badge {{ $data->status == 'Aktif' ? 'bg-success' : 'bg-danger' }} text-white p-2" style="border-radius: 5px; font-size: 14px; min-width: 100px; text-align: center;"">
-
-                      {{ $data->status }}
+                    <span class="badge {{ $data->status == 'Aktif' ? 'bg-active' : 'bg-offline' }} fw-bold p-2" 
+                          style="border-radius: 20px; font-size: 12px; min-width: 100px; text-align: center;">
+                        {{ $data->status }}
                     </span>
-                  </td>
+                  </td>                
                   <td class=" text-start">{{$data->VA}}</td>
                   <td class="text-start">{{$data->penarikRetribusi->nama}}</td>
                   <td class="text-start">

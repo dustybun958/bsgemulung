@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+  .bg-active {
+      background-color: #A7F3D0; /* Warna hijau mint (sesuai gambar) */
+      color: #1C8B69; /* Teks warna hijau tua */
+  }
+
+  .bg-offline {
+      background-color: #FECACA; /* Warna merah muda (sesuai gambar) */
+      color: #B91C1C; /* Teks warna merah tua */
+  }
+
+  .bg-telat {
+      background-color: #FDE68A; /* Warna merah muda (sesuai gambar) */
+      color: #B45309; /* Teks warna merah tua */
+  }
+</style>
+
 <div class="container-xxl flex-grow-1 container-p-y">
   <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Input Lapak</h4>
 
@@ -179,10 +197,10 @@
                   <td class="text-start">{{ $data->tarif_dasar }}</td>
                   <td class="text-start">
                     <span class="badge 
-    {{ $data->status_lapak == 'Kosong' ? 'bg-danger' : '' }}
-    {{ $data->status_lapak == 'Isi' ? 'bg-success' : '' }}
-    {{ $data->status_lapak == 'Telat Bayar' ? 'bg-warning' : '' }}
-    text-white p-2" style="border-radius: 5px; font-size: 14px; min-width: 80px; text-align: center;">
+    {{ $data->status_lapak == 'Kosong' ? 'bg-offline' : '' }}
+    {{ $data->status_lapak == 'Isi' ? 'bg-active' : '' }}
+    {{ $data->status_lapak == 'Telat Bayar' ? 'bg-telat' : '' }}
+    fw-bold p-2" style="border-radius: 20px; font-size: 12px; min-width: 100px; text-align: center;">
                       {{ $data->status_lapak }}
                     </span>
                   </td>
