@@ -113,4 +113,16 @@ class PasarController extends Controller
         $pasar->delete();
         return redirect()->route('pasar.index')->with('success', 'Pasar berhasil dihapus.');
     }
+
+    public function cetakPerpasar()
+    {
+        return view('admin.Pasar.cetak-perpasar');
+    }
+
+    public function cetakDataPerpasar($nmpasar)
+    {
+        // dd(["Nama Pasar : " . $nmpasar]);
+        $cetakLpPerpasar = Pasar::where('pasar', [$nmpasar])->get();
+        return view('admin.Pasar.cetak-lp-perpasar', compact('cetakLpPerpasar'));
+    }
 }

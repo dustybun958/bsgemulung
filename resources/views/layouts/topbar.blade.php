@@ -8,7 +8,9 @@
   <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
     <div class="navbar-nav align-items-center">
       <div class="nav-item d-flex align-items-center">
-        <h2 class="m-0 p-0 text-primary" style="font-weight: bold">UNIT PASAR DPPKUM KOTA MAGELANG</h2>
+        <h2 class="m-0 p-0 text-primary" style="font-weight: bold; font-size: 24px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); letter-spacing: 1px;">
+          UNIT PASAR DPPKUM KOTA MAGELANG
+        </h2>
       </div>
     </div>
 

@@ -16,6 +16,12 @@ class IzinController extends Controller
         return view('admin.izin.index', compact('izin', 'pedagang'));
     }
 
+    public function formIzin()
+    {
+        $izin = Izin::all();
+        return view('admin.izin.form-izin', compact('izin'));
+    }
+
     public function create()
     {
         $pedagang = Pedagang::all(); // Mengambil semua data alamat

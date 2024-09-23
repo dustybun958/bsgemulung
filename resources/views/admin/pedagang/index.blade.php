@@ -7,8 +7,21 @@
   <div class="row">
     <div class="col-md-12">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> Tambah Pedagang
-      </button>
+      <div class="d-flex gap-2 mb-3">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+          <i class="fas fa-plus"></i> Tambah Pedagang
+        </button>
+
+        <button
+          class="btn btn-secondary"
+          onclick="window.open('{{ route('form-pedagang')}}','_blank')">
+          <i class="fas fa-print"></i> Cetak Data
+        </button>
+      </div>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -27,16 +40,22 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <div class="mb-3">
-                    <label for="id_lapak" class="form-label">ID Lapak</label>
-                    <input type="number" class="form-control" required name="id_lapak" id="id_lapak" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
-                    <div id="lapak-list" class="list-group"></div>
-                  </div>
+                  <label for="id_lapak" class="form-label">ID Lapak</label>
+                  <select name="id_lapak" required id="id_lapak" class="form-control">
+                    <option value="" disabled selected>- Pilih ID Lapak -</option> <!-- Default option -->
+                    @foreach ($lapaks as $lapak)
+                    <option value="{{ $lapak->id_lapak }}">{{ $lapak->id_lapak }}</option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="mb-3">
                   <label for="nik" class="form-label">NIK</label>
-                  <input type="number" required class="form-control" name="nik" id="nik">
-                  <div id="nik-list" class="list-group"></div>
+                  <select name="nik" required id="nik" class="form-control">
+                    <option value="" disabled selected>- Pilih NIK -</option> <!-- Default option -->
+                    @foreach ($dataDiris as $data_diri)
+                    <option value="{{ $data_diri->nik }}">{{ $data_diri->nik }}</option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="mb-3">
                   <div class="mb-3">
@@ -151,7 +170,6 @@
   new DataTable('#myTable', {
     scrollX: true
   });
-
 </script>
 @endpush
 @push('js')
@@ -159,20 +177,19 @@
 <script>
   function confirmDelete(id) {
     Swal.fire({
-      title: 'Yakin ingin menghapus?'
-      , text: "Data yang sudah dihapus tidak bisa dikembalikan!"
-      , icon: 'warning'
-      , showCancelButton: true
-      , confirmButtonColor: '#3085d6'
-      , cancelButtonColor: '#d33'
-      , confirmButtonText: 'Ya, hapus!'
+      title: 'Yakin ingin menghapus?',
+      text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
       if (result.isConfirmed) {
         document.getElementById('delete-form-' + id).submit();
       }
     });
   }
-
 </script>
 @endpush
 
@@ -183,7 +200,6 @@
       element.value = value.slice(0, 4);
     }
   }
-
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -193,11 +209,11 @@
       if (nik.length >= 3) { // Mulai pencarian setelah 3 karakter
         $.ajax({
           url: '/search-nik', // Route untuk search
-          type: 'GET'
-          , data: {
+          type: 'GET',
+          data: {
             nik: nik
-          }
-          , success: function(data) {
+          },
+          success: function(data) {
             $('#nik-list').empty();
             if (data.length > 0) {
               $.each(data, function(index, item) {
@@ -221,7 +237,6 @@
       $('#nik-list').empty(); // Kosongkan list setelah memilih
     });
   });
-
 </script>
 <script type="text/javascript">
   $(document).ready(function() {
@@ -231,11 +246,11 @@
       if (idLapak.length >= 1) { // Mulai pencarian setelah 1 karakter
         $.ajax({
           url: '/search-lapak', // Route untuk search lapak
-          type: 'GET'
-          , data: {
+          type: 'GET',
+          data: {
             id_lapak: idLapak
-          }
-          , success: function(data) {
+          },
+          success: function(data) {
             $('#lapak-list').empty();
             if (data.length > 0) {
               $.each(data, function(index, item) {
@@ -259,5 +274,4 @@
       $('#lapak-list').empty(); // Kosongkan list setelah memilih
     });
   });
-
 </script>

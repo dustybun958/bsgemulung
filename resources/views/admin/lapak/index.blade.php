@@ -7,8 +7,21 @@
   <div class="row">
     <div class="col-md-12">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> Tambah Lapak
-      </button>
+      <div class="d-flex gap-2 mb-3">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+          <i class="fas fa-plus"></i> Tambah Lapak
+        </button>
+
+        <button
+          class="btn btn-secondary"
+          onclick="window.open('{{ route('form-lapak') }}', '_blank')">
+          <i class="fas fa-print"></i> Cetak Data
+        </button>
+      </div>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -210,7 +223,6 @@
   new DataTable('#myTable', {
     scrollX: true
   });
-
 </script>
 @endpush
 @push('js')
@@ -218,20 +230,19 @@
 <script>
   function confirmDelete(nik) {
     Swal.fire({
-      title: 'Yakin ingin menghapus?'
-      , text: "Data yang sudah dihapus tidak bisa dikembalikan!"
-      , icon: 'warning'
-      , showCancelButton: true
-      , confirmButtonColor: '#3085d6'
-      , cancelButtonColor: '#d33'
-      , confirmButtonText: 'Ya, hapus!'
+      title: 'Yakin ingin menghapus?',
+      text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
       if (result.isConfirmed) {
         document.getElementById('delete-form-' + nik).submit();
       }
     });
   }
-
 </script>
 @endpush
 <script>
@@ -241,5 +252,4 @@
       element.value = value.slice(0, 5);
     }
   }
-
 </script>

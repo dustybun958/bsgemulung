@@ -24,6 +24,12 @@ class LapakController extends Controller
         return view('admin.lapak.index', compact('pasars', 'lapaks'));
     }
 
+    public function formLapak()
+    {
+        $lapaks = Lapak::all();
+        return view('admin.lapak.form-lapak', compact('lapaks'));
+    }
+
     /**
      * Menampilkan form untuk membuat lapak baru.
      *

@@ -14,8 +14,16 @@ class PedagangController extends Controller
     public function index()
     {
         $pedagang = Pedagang::with(['lapak', 'dataDiri', 'penarikRetribusi'])->get();
+        $dataDiris = DataDiri::all();
         $penariks = PenarikRetribusi::all();
-        return view('admin.pedagang.index', compact('pedagang', 'penariks'));
+        $lapaks = Lapak::all();
+        return view('admin.pedagang.index', compact('pedagang', 'penariks', 'lapaks', 'dataDiris'));
+    }
+
+    public function formPedagang()
+    {
+        $pedagang = Pedagang::all();
+        return view('admin.pedagang.form-pedagang', compact('pedagang'));
     }
 
     // Menampilkan form untuk menambahkan pedagang baru
