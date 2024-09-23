@@ -92,6 +92,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/pedagang/{id}/edit', [PedagangController::class, 'edit'])->name('pedagang.edit');
     Route::put('/admin/pedagang/{id}', [PedagangController::class, 'update'])->name('pedagang.update');
     Route::get('/admin/form-pedagang', [PedagangController::class, 'formPedagang'])->name('form-pedagang');
+    Route::get('/admin/cetak-pedagang', [PedagangController::class, 'cetakPedagang'])->name('cetak-pedagang');
+    Route::get('/cetak-data-pedagang/{nmstatus}', [PedagangController::class, 'cetakDataPedagang'])->name('cetak-data-pedagang');
 
     Route::get('/admin/data_diri', [DataDiriController::class, 'index'])->name('data_diri.index');
     Route::post('/admin/data_diri', [DataDiriController::class, 'store']);

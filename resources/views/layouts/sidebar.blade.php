@@ -76,6 +76,12 @@
             <div data-i18n="Without menu">Cetak Pasar</div>
           </a>
         </li>
+        <li class="menu-item {{ Request::is('/admin/cetak-pedagang') ? 'active' : '' }}">
+          <a href="cetak-pedagang" class="menu-link">
+            <i class="menu-icon fas fa-print"></i>
+            <div data-i18n="Without menu">Cetak Pedagang</div>
+          </a>
+        </li>
       </ul>
     </li>
 

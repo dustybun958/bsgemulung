@@ -118,4 +118,17 @@ class PedagangController extends Controller
 
         return response()->json($result);
     }
+
+    public function cetakPedagang()
+    {
+        return view('admin.Pedagang.cetak-pedagang');
+    }
+
+    public function cetakDataPedagang($nmstatus)
+    {
+        // dd(["Nama Pasar : " . $nmpasar]);
+        // $pedagang = Pedagang::all();
+        $cetakLpPedagang = Pedagang::where('status', [$nmstatus])->get();
+        return view('admin.Pedagang.cetak-lp-pedagang', compact('cetakLpPedagang'));
+    }
 }
