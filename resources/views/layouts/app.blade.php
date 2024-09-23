@@ -60,6 +60,7 @@
     * {
       font-family: 'Poppins', sans-serif;
     }
+
   </style>
 </head>
 
@@ -102,6 +103,7 @@
 
   <script>
     // window.scrollTo(xCoord, yCoord);
+
   </script>
 
   <!-- Core JS -->
@@ -146,6 +148,7 @@
         $("#btnUp").hide();
       }
     })
+
   </script>
   @stack('js')
 </body>

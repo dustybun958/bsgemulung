@@ -8,17 +8,11 @@
     <div class="col-md-12">
       <!-- Button trigger modal -->
       <div class="d-flex gap-2 mb-3">
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <i class="fas fa-plus"></i> Tambah Lapak
         </button>
 
-        <button
-          class="btn btn-secondary"
-          onclick="window.open('{{ route('form-lapak') }}', '_blank')">
+        <button class="btn btn-secondary" onclick="window.open('{{ route('form-lapak') }}', '_blank')">
           <i class="fas fa-print"></i> Cetak Data
         </button>
       </div>
@@ -183,7 +177,16 @@
                   <td class="text-start">{{ $data->hadap }}</td>
                   <td class="text-start">{{ $data->luas }}</td>
                   <td class="text-start">{{ $data->tarif_dasar }}</td>
-                  <td class="text-start">{{ $data->status_lapak }}</td>
+                  <td class="text-start">
+                    <span class="badge 
+    {{ $data->status_lapak == 'Kosong' ? 'bg-danger' : '' }}
+    {{ $data->status_lapak == 'Isi' ? 'bg-success' : '' }}
+    {{ $data->status_lapak == 'Telat Bayar' ? 'bg-warning' : '' }}
+    text-white p-2" style="border-radius: 10px; font-size: 14px; min-width: 80px; text-align: center;">
+                      {{ $data->status_lapak }}
+                    </span>
+                  </td>
+
                   <td class="text-start">
                     {{-- <a href="{{ route('sampah.edit', $data->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a> --}}
                     <div class="align-items-center">
@@ -223,6 +226,7 @@
   new DataTable('#myTable', {
     scrollX: true
   });
+
 </script>
 @endpush
 @push('js')
@@ -230,19 +234,20 @@
 <script>
   function confirmDelete(nik) {
     Swal.fire({
-      title: 'Yakin ingin menghapus?',
-      text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya, hapus!'
+      title: 'Yakin ingin menghapus?'
+      , text: "Data yang sudah dihapus tidak bisa dikembalikan!"
+      , icon: 'warning'
+      , showCancelButton: true
+      , confirmButtonColor: '#3085d6'
+      , cancelButtonColor: '#d33'
+      , confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
       if (result.isConfirmed) {
         document.getElementById('delete-form-' + nik).submit();
       }
     });
   }
+
 </script>
 @endpush
 <script>
@@ -252,4 +257,5 @@
       element.value = value.slice(0, 5);
     }
   }
+
 </script>

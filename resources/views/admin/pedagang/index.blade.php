@@ -8,17 +8,11 @@
     <div class="col-md-12">
       <!-- Button trigger modal -->
       <div class="d-flex gap-2 mb-3">
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <i class="fas fa-plus"></i> Tambah Pedagang
         </button>
 
-        <button
-          class="btn btn-secondary"
-          onclick="window.open('{{ route('form-pedagang')}}','_blank')">
+        <button class="btn btn-secondary" onclick="window.open('{{ route('form-pedagang')}}','_blank')">
           <i class="fas fa-print"></i> Cetak Data
         </button>
       </div>
@@ -125,11 +119,16 @@
                   <td class="text-start">{{$loop->iteration}}</td>
                   <td class="text-start">{{$data->id_pedagang}}</td>
                   <td class="text-start">{{$data->id_lapak}}</td>
-                  <td class="text-start">{{$data->nik}}</td>=
+                  <td class="text-start">{{$data->nik}}</td>
                   <td class="text-start">{{$data->check_in}}</td>
                   <td class="text-start">{{$data->check_out}}</td>
-                  <td class="text-start">{{$data->status}}</td>
-                  <td class="text-start">{{$data->VA}}</td>
+                  <td class="text-start">
+                    <span class="badge {{ $data->status == 'Aktif' ? 'bg-success' : 'bg-danger' }} text-white p-2" style="border-radius: 10px; font-size: 14px; min-width: 100px; text-align: center;"">
+
+                      {{ $data->status }}
+                    </span>
+                  </td>
+                  <td class=" text-start">{{$data->VA}}</td>
                   <td class="text-start">{{$data->penarikRetribusi->nama}}</td>
                   <td class="text-start">
                     {{-- <a href="{{ route('sampah.edit', $data->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a> --}}
@@ -170,6 +169,7 @@
   new DataTable('#myTable', {
     scrollX: true
   });
+
 </script>
 @endpush
 @push('js')
@@ -177,19 +177,20 @@
 <script>
   function confirmDelete(id) {
     Swal.fire({
-      title: 'Yakin ingin menghapus?',
-      text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya, hapus!'
+      title: 'Yakin ingin menghapus?'
+      , text: "Data yang sudah dihapus tidak bisa dikembalikan!"
+      , icon: 'warning'
+      , showCancelButton: true
+      , confirmButtonColor: '#3085d6'
+      , cancelButtonColor: '#d33'
+      , confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
       if (result.isConfirmed) {
         document.getElementById('delete-form-' + id).submit();
       }
     });
   }
+
 </script>
 @endpush
 
@@ -200,6 +201,7 @@
       element.value = value.slice(0, 4);
     }
   }
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -209,11 +211,11 @@
       if (nik.length >= 3) { // Mulai pencarian setelah 3 karakter
         $.ajax({
           url: '/search-nik', // Route untuk search
-          type: 'GET',
-          data: {
+          type: 'GET'
+          , data: {
             nik: nik
-          },
-          success: function(data) {
+          }
+          , success: function(data) {
             $('#nik-list').empty();
             if (data.length > 0) {
               $.each(data, function(index, item) {
@@ -237,6 +239,7 @@
       $('#nik-list').empty(); // Kosongkan list setelah memilih
     });
   });
+
 </script>
 <script type="text/javascript">
   $(document).ready(function() {
@@ -246,11 +249,11 @@
       if (idLapak.length >= 1) { // Mulai pencarian setelah 1 karakter
         $.ajax({
           url: '/search-lapak', // Route untuk search lapak
-          type: 'GET',
-          data: {
+          type: 'GET'
+          , data: {
             id_lapak: idLapak
-          },
-          success: function(data) {
+          }
+          , success: function(data) {
             $('#lapak-list').empty();
             if (data.length > 0) {
               $.each(data, function(index, item) {
@@ -274,4 +277,5 @@
       $('#lapak-list').empty(); // Kosongkan list setelah memilih
     });
   });
+
 </script>
