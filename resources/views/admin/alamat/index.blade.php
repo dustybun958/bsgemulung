@@ -144,6 +144,7 @@
   new DataTable('#myTable', {
     scrollX: true
   });
+
 </script>
 @endpush
 @push('js')
@@ -151,18 +152,19 @@
 <script>
   function confirmDelete(id) {
     Swal.fire({
-      title: 'Yakin ingin menghapus?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya, hapus!'
+      title: 'Yakin ingin menghapus?'
+      , text: "You won't be able to revert this!"
+      , icon: 'warning'
+      , showCancelButton: true
+      , confirmButtonColor: '#3085d6'
+      , cancelButtonColor: '#d33'
+      , confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
       if (result.isConfirmed) {
         document.getElementById('delete-form-' + id).submit();
       }
     });
   }
+
 </script>
 @endpush

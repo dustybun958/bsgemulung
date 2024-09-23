@@ -23,8 +23,8 @@ class AlamatController extends Controller
     {
         $request->validate([
             'kode_alamat' => 'required|string|max:60',
-            'kab_kota' => 'required|in:Kota Magelang,Bukan Kota Magelang,-',
-            'kecamatan' => 'required|in:Magelang Utara, Magelang Tengah, Magelang Selatan,Bukan Kota Magelang,-',
+            'kab_kota' => 'required|string|max:100',
+            'kecamatan' => 'required|string|max:100',
             'Kelurahan' => 'required|string|max:60',
         ]);
 
@@ -54,8 +54,8 @@ class AlamatController extends Controller
     {
         $request->validate([
             'kode_alamat' => 'string|max:255',
-            'kab_kota' => 'required|in:Kota Magelang,Bukan Kota Magelang,-',
-            'kecamatan' => 'required|in:Magelang Utara, Magelang Tengah, Magelang Selatan,Bukan Kota Magelang,-',
+            'kab_kota' => 'required|string|max:100',
+            'kecamatan' => 'required|string|max:100',
             'Kelurahan' => 'required|string|max:60',
         ]);
 
