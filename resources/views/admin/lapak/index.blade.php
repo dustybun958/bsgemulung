@@ -182,7 +182,7 @@
     {{ $data->status_lapak == 'Kosong' ? 'bg-danger' : '' }}
     {{ $data->status_lapak == 'Isi' ? 'bg-success' : '' }}
     {{ $data->status_lapak == 'Telat Bayar' ? 'bg-warning' : '' }}
-    text-white p-2" style="border-radius: 10px; font-size: 14px; min-width: 80px; text-align: center;">
+    text-white p-2" style="border-radius: 5px; font-size: 14px; min-width: 80px; text-align: center;">
                       {{ $data->status_lapak }}
                     </span>
                   </td>

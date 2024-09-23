@@ -123,7 +123,7 @@
                   <td class="text-start">{{$data->check_in}}</td>
                   <td class="text-start">{{$data->check_out}}</td>
                   <td class="text-start">
-                    <span class="badge {{ $data->status == 'Aktif' ? 'bg-success' : 'bg-danger' }} text-white p-2" style="border-radius: 10px; font-size: 14px; min-width: 100px; text-align: center;"">
+                    <span class="badge {{ $data->status == 'Aktif' ? 'bg-success' : 'bg-danger' }} text-white p-2" style="border-radius: 5px; font-size: 14px; min-width: 100px; text-align: center;"">
 
                       {{ $data->status }}
                     </span>
