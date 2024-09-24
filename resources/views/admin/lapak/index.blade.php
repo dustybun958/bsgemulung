@@ -105,7 +105,7 @@
                   <select name="zonasi" id="zonasi" class="form-control">
                     <option value="Sayur">Sayur</option>
                     <option value="Daging">Daging</option>
-                    <option value="pakian">Pakai</option>
+                    <option value="pakian">Pakaian</option>
                     <option value="Sepatu">Sepatu</option>
                     <option value="Bumbu Dapur">Bumbu Dapur</option>
                     <option value="Kuliner">Kuliner</option>

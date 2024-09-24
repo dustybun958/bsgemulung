@@ -145,4 +145,17 @@ class LapakController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->route('lapak.index')->with('success', 'Lapak berhasil dihapus.');
     }
+
+    public function cetakLapak()
+    {
+        return view('admin.lapak.cetak-lapak');
+    }
+
+    public function cetakDataLapak($nmpasar)
+    {
+        $cetakLpLapak = Lapak::with('pasar')->whereHas('pasar', function ($query) use ($nmpasar) {
+            $query->where('pasar', $nmpasar);
+        })->get();
+        return view('admin.lapak.cetak-lp-lapak', compact('cetakLpLapak'));
+    }
 }

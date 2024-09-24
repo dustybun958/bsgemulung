@@ -54,26 +54,30 @@
             <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
               @csrf
               <div class="mb-3">
-                <x-input-label for="email" class="form-label" :value="__('Username')" />
+                <x-input-label for="email" class="form-label">
+                    <strong>Username</strong>
+                </x-input-label>
                 <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2 text-danger fs-6" />
-              </div>
+            </div>
+            
 
-              <div class="mb-3 form-password-toggle">
-                <div class="d-flex justify-content-between">
-                  <x-input-label for="password" class="form-label" :value="__('Password')" />
-                </div>
-                <div class="input-group input-group-merge">
+            <div class="mb-3 form-password-toggle">
+              <div class="d-flex justify-content-between">
+                  <x-input-label for="password" class="form-label">
+                      <strong>Password</strong>
+                  </x-input-label>
+              </div>
+              <div class="input-group input-group-merge">
                   <x-text-input id="password" class="form-control" type="password" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required autocomplete="current-password" />
                   <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                </div>
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
               </div>
+              <x-input-error :messages="$errors->get('password')" class="mt-2" />
+          </div>
+          
               <div class="mb-3">
-                <button class="btn d-grid w-100 mb-2" type="submit" style="background-color: #19497D; color: #ffffff;">Log
-
-
-                  in</button>
+                <button class="btn d-grid w-100 mb-2" type="submit" style="background-color: #19497D; color: #ffffff;">
+                 <strong> Log in </strong> </button>
               </div>
             </form>
             </p>

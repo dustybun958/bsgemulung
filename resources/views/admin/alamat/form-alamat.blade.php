@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="csrf-token" content="{{csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -27,12 +27,12 @@
             background-color: #f2f2f2;
         }
     </style>
-    <title>Cetak Data Diri</title>
+    <title>Cetak Data Alamat</title>
 </head>
 
 <body>
     <div class="form-group">
-        <p align="center"><b>Laporan Data Diri</b></p>
+        <p align="center"><b>Laporan Data Alamat</b></p>
         <table class="static">
             <tr>
                 <th>ID Alamat</th>
@@ -42,13 +42,13 @@
                 <th>Kelurahan</th>
             </tr>
             @foreach ($alamat as $data)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $data->kode_alamat }}</td>
-                <td>{{ $data->kab_kota }}</td>
-                <td>{{ $data->kecamatan }}</td>
-                <td>{{ $data->Kelurahan }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $data->kode_alamat }}</td>
+                    <td>{{ $data->kab_kota }}</td>
+                    <td>{{ $data->kecamatan }}</td>
+                    <td>{{ $data->Kelurahan }}</td>
+                </tr>
             @endforeach
         </table>
     </div>
