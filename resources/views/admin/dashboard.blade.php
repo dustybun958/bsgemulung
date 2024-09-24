@@ -71,16 +71,16 @@
                     type: 'column'
                 }
                 , title: {
-                    text: 'Corn vs wheat estimated production for 2023'
+                    text: 'Status Per Lapak'
                     , align: 'left'
                 }
-                , subtitle: {
-                    text: 'Source: <a target="_blank" ' +
-                        'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>'
-                    , align: 'left'
-                }
+                // , subtitle: {
+                //     text: 'Source: <a target="_blank" ' +
+                //         'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>'
+                //     , align: 'left'
+                // }
                 , xAxis: {
-                    categories: ['USA', 'China', 'Brazil', 'EU', 'Argentina', 'India']
+                    categories: ['Rejowinangun', 'Kebonpolo', 'Cacaban', 'Sidomukti', '	Gotong Royong']
                     , crosshair: true
                     , accessibility: {
                         description: 'Countries'
@@ -89,11 +89,11 @@
                 , yAxis: {
                     min: 0
                     , title: {
-                        text: '1000 metric tons (MT)'
+                        text: 'total'
                     }
                 }
                 , tooltip: {
-                    valueSuffix: ' (1000 MT)'
+                    // valueSuffix: ' (1000 MT)'
                 }
                 , plotOptions: {
                     column: {
@@ -102,14 +102,21 @@
                     }
                 }
                 , series: [{
-                        name: 'Corn'
-                        , data: [387749, 280000, 129000, 64300, 54000, 34300]
+                        name: 'Kosong'
+                        , data: [38, 28, 12, 64, 54]
                     }
                     , {
-                        name: 'Wheat'
-                        , data: [45321, 140000, 10000, 140500, 19500, 113500]
+                        name: 'Isi'
+                        , data: [453, 140, 100, 14, 19]
+                    }
+                    , {
+                        name: 'Telat Bayar'
+                        , data: [453, 1400, 1000, 1405, 19]
                     }
                 ]
+                , credits: {
+                    enabled: false //mematikan watermark
+                }
             });
 
         });
