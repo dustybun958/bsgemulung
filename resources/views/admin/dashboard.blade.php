@@ -117,7 +117,10 @@
                 , credits: {
                     enabled: false //mematikan watermark
                 }
-            });
+                , exporting: {
+                    enabled: true
+                }
+            , });
 
         });
 
@@ -139,5 +142,5 @@
 
 <!-- Highcharts -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/dashboards/modules/layout.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 @endsection
