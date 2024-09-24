@@ -62,7 +62,7 @@
 
     </div>
 
-    <div id="container" style="width:50%; height:400px;"></div>
+    <div id="container" style="width:100%; height:400px;"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -72,13 +72,8 @@
                 }
                 , title: {
                     text: 'Status Per Lapak'
-                    , align: 'left'
+                    , align: 'center'
                 }
-                // , subtitle: {
-                //     text: 'Source: <a target="_blank" ' +
-                //         'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>'
-                //     , align: 'left'
-                // }
                 , xAxis: {
                     categories: ['Rejowinangun', 'Kebonpolo', 'Cacaban', 'Sidomukti', '	Gotong Royong']
                     , crosshair: true
@@ -143,4 +138,6 @@
 <!-- Highcharts -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 @endsection
