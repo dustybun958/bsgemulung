@@ -17,6 +17,7 @@ use App\Models\DataDiri;
 use App\Models\Izin;
 use App\Models\PenarikRetribusi;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,44 @@ Route::get('/admin/dashboard', function () {
     $totalpasar = Pasar::count();
     $totallapak = Lapak::count();
     $totalpedagang = Pedagang::count();
-    return view('admin.dashboard', compact('totalpasar', 'totallapak', 'totalpedagang'));
+
+    // Mengambil data jumlah lapak berdasarkan status per pasar dengan join ke tabel pasar
+    $lapakData = DB::table('lapak')
+        ->join('pasar', 'lapak.id_pasar', '=', 'pasar.id_pasar') // Join dengan tabel pasar
+        ->select(
+            'pasar.pasar', // Ambil nama pasar dari tabel pasar
+            DB::raw('SUM(CASE WHEN lapak.status_lapak = "Kosong" THEN 1 ELSE 0 END) as total_kosong'),
+            DB::raw('SUM(CASE WHEN lapak.status_lapak = "Isi" THEN 1 ELSE 0 END) as total_isi'),
+            DB::raw('SUM(CASE WHEN lapak.status_lapak = "Telat Bayar" THEN 1 ELSE 0 END) as total_telat_bayar')
+        )
+        ->groupBy('pasar.pasar') // Kelompokkan berdasarkan nama pasar
+        ->get();
+
+    // Format data untuk dikirim ke chart
+    $categories = [];
+    $dataKosong = [];
+    $dataIsi = [];
+    $dataTelatBayar = [];
+
+    foreach ($lapakData as $lapak) {
+        $categories[] = $lapak->pasar; // Gunakan nama pasar dari hasil join
+        $dataKosong[] = (int)$lapak->total_kosong;
+        $dataIsi[] = (int)$lapak->total_isi;
+        $dataTelatBayar[] = (int)$lapak->total_telat_bayar;
+    }
+
+    // Mengembalikan data ke view
+    // Mengembalikan data ke view
+    return view('admin.dashboard', [
+        'categories' => $categories,
+        'dataKosong' => $dataKosong,
+        'dataIsi' => $dataIsi,
+        'dataTelatBayar' => $dataTelatBayar,
+        'totalpasar' => $totalpasar,
+        'totallapak' => $totallapak,
+        'totalpedagang' => $totalpedagang
+    ])->with('lapakData', $lapakData); // Untuk memastikan data lapak
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -62,14 +100,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/cetak-lapak', [LapakController::class, 'cetakLapak'])->name('cetak-lapak');
     Route::get('/cetak-data-lapak/{nmpasar}', [LapakController::class, 'cetakDataLapak'])->name('cetak-data-lapak');
 
-
     Route::get('/admin/izin', [IzinController::class, 'index'])->name('izin.index');
     Route::post('/admin/izin', [IzinController::class, 'store']);
     Route::delete('/admin/izin/{id_izin}', [IzinController::class, 'destroy'])->name('izin.destroy');
     Route::get('/admin/izin/{id_izin}/edit', [IzinController::class, 'edit'])->name('izin.edit');
     Route::put('/admin/izin/{id_izin}', [IzinController::class, 'update'])->name('izin.update');
     Route::get('/admin/form-izin', [IzinController::class, 'formIzin'])->name('form-izin');
-
 
     Route::get('/admin/alamat', [AlamatController::class, 'index'])->name('alamat.index');
     Route::post('/admin/alamat', [AlamatController::class, 'store']);
