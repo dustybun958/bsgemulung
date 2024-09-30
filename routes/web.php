@@ -78,8 +78,9 @@ Route::get('/admin/dashboard', function () {
     //     'totalpedagang' => $totalpedagang
     // ])->with('lapakData', $lapakData); // Untuk memastikan data lapak
 
-    $statusPasar = DB::table('pedagang')
-        ->join('pasar', 'pedagang.id_pedagang', '=', 'pasar.id_pasar')
+    $pedagangData = DB::table('pedagang')
+        ->join('lapak', 'pedagang.id_lapak', '=', 'lapak.id_lapak')
+        ->join('pasar', 'lapak.id_pasar', '=', 'pasar.id_pasar')
         ->select(
             'pasar.pasar',
             DB::raw('SUM(CASE WHEN pedagang.status = "Aktif" THEN 1 ELSE 0 END) as total_aktif'),
@@ -88,16 +89,17 @@ Route::get('/admin/dashboard', function () {
         ->groupBy('pasar.pasar')
         ->get();
 
-    // Siapkan array untuk data yang akan dikirim ke view
+    // Siapkan data untuk dikirim ke view
     $categories2 = [];
     $statusAktif = [];
     $statusTidakAktif = [];
 
-    foreach ($statusPasar as $pedagang) {
-        $categories2[] = $pedagang->pasar;
-        $statusAktif[] = (int) $pedagang->total_aktif;
-        $statusTidakAktif[] = (int) $pedagang->total_tidak_aktif;
+    foreach ($pedagangData as $data) {
+        $categories2[] = $data->pasar;
+        $statusAktif[] = (int) $data->total_aktif;
+        $statusTidakAktif[] = (int) $data->total_tidak_aktif;
     }
+
 
     // Kirim data ke view
     return view('admin.dashboard', [
