@@ -68,15 +68,51 @@ Route::get('/admin/dashboard', function () {
 
     // Mengembalikan data ke view
     // Mengembalikan data ke view
+    // return view('admin.dashboard', [
+    //     'categories' => $categories,
+    //     'dataKosong' => $dataKosong,
+    //     'dataIsi' => $dataIsi,
+    //     'dataTelatBayar' => $dataTelatBayar,
+    //     'totalpasar' => $totalpasar,
+    //     'totallapak' => $totallapak,
+    //     'totalpedagang' => $totalpedagang
+    // ])->with('lapakData', $lapakData); // Untuk memastikan data lapak
+
+    $statusPasar = DB::table('pedagang')
+        ->join('pasar', 'pedagang.id_pedagang', '=', 'pasar.id_pasar')
+        ->select(
+            'pasar.pasar',
+            DB::raw('SUM(CASE WHEN pedagang.status = "Aktif" THEN 1 ELSE 0 END) as total_aktif'),
+            DB::raw('SUM(CASE WHEN pedagang.status = "Tidak Aktif" THEN 1 ELSE 0 END) as total_tidak_aktif')
+        )
+        ->groupBy('pasar.pasar')
+        ->get();
+
+    // Siapkan array untuk data yang akan dikirim ke view
+    $categories2 = [];
+    $statusAktif = [];
+    $statusTidakAktif = [];
+
+    foreach ($statusPasar as $pedagang) {
+        $categories2[] = $pedagang->pasar;
+        $statusAktif[] = (int) $pedagang->total_aktif;
+        $statusTidakAktif[] = (int) $pedagang->total_tidak_aktif;
+    }
+
+    // Kirim data ke view
     return view('admin.dashboard', [
+        'totalpasar' => $totalpasar,
+        'totallapak' => $totallapak,
+        'totalpedagang' => $totalpedagang,
         'categories' => $categories,
         'dataKosong' => $dataKosong,
         'dataIsi' => $dataIsi,
         'dataTelatBayar' => $dataTelatBayar,
-        'totalpasar' => $totalpasar,
-        'totallapak' => $totallapak,
-        'totalpedagang' => $totalpedagang
-    ])->with('lapakData', $lapakData); // Untuk memastikan data lapak
+        'categories2' => $categories2,
+        'statusAktif' => $statusAktif,
+        'statusTidakAktif' => $statusTidakAktif,
+    ]);
+    // Untuk memastikan data lapak
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 
