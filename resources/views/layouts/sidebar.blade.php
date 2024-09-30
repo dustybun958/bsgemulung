@@ -70,19 +70,19 @@
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::is('/admin/cetak-perpasar') ? 'active' : '' }}">
                     <a href="cetak-perpasar" class="menu-link">
-                        <i class="menu-icon fas fa-print"></i>
+                        <i class="menu-icon tf-icons bx bx-printer"></i>
                         <div data-i18n="Without menu">Cetak Pasar</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('/admin/cetak-pedagang') ? 'active' : '' }}">
                     <a href="cetak-pedagang" class="menu-link">
-                        <i class="menu-icon fas fa-print"></i>
+                        <i class="menu-icon tf-icons bx bx-printer"></i>
                         <div data-i18n="Without menu">Cetak Pedagang</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('/admin/cetak-lapak') ? 'active' : '' }}">
                     <a href="cetak-lapak" class="menu-link">
-                        <i class="menu-icon fas fa-print"></i>
+                        <i class="menu-icon tf-icons bx bx-printer"></i>
                         <div data-i18n="Without menu">Cetak Lapak</div>
                     </a>
                 </li>
