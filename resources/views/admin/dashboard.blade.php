@@ -134,7 +134,7 @@
                 type: 'column'
               }
               , title: {
-                text: 'Status Per Pasar'
+                text: 'Status Pedagang'
               }
               , xAxis: {
                 categories: categories2
