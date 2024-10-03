@@ -161,9 +161,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/penarik_retribusi/{id}', [PenarikRetribusiController::class, 'update'])->name('penarik_retribusi.update');
     Route::get('/admin/form-penarik', [PenarikRetribusiController::class, 'formPenarik'])->name('form-penarik');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/auth/ubah-password', [ProfileController::class, 'PasswordForm'])->name('password.ubah');
+    Route::post('/auth/ubah-password', [ProfileController::class, 'ubahPassword'])->name('password.update');
 
     Route::get('/admin/pedagang', [PedagangController::class, 'index'])->name('pedagang.index');
     Route::post('/admin/pedagang', [PedagangController::class, 'store']);

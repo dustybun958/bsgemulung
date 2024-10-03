@@ -34,11 +34,6 @@ class User extends Authenticatable
    * @return string
    */
 
-  public function sampah()
-  {
-    return $this->hasMany(Sampah::class);
-  }
-
   protected $fillable = [
     'name',
     'email',
