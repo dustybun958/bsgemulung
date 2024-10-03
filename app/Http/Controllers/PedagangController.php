@@ -39,6 +39,8 @@ class PedagangController extends Controller
             'id_pedagang' => 'required|string|unique:pedagang,id_pedagang',
             'id_lapak' => 'required|integer',
             'nik' => 'required|string',
+            'izin' => 'required|string',
+            'jenis_dagang' => 'required|string',
             'check_in' => 'required|date',
             'check_out' => 'nullable|date',
             'status' => 'required|in:Aktif,Tidak Aktif',
@@ -72,6 +74,8 @@ class PedagangController extends Controller
         $request->validate([
             'id_lapak' => 'required|integer',
             'nik' => 'required|string',
+            'izin' => 'required|string',
+            'jenis_dagang' => 'required|string',
             'check_in' => 'required|date',
             'check_out' => 'nullable|date',
             'status' => 'required|in:Aktif,Tidak Aktif',

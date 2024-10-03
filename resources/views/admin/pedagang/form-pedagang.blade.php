@@ -26,6 +26,7 @@
         th {
             background-color: #f2f2f2;
         }
+
     </style>
     <title>Cetak Data Pedagang</title>
 </head>
@@ -39,6 +40,8 @@
                 <th class="text-start">Id Pedagang</th>
                 <th class="text-start">Id Lapak</th>
                 <th class="text-start">NIK</th>
+                <th class="text-start">Izin</th>
+                <th class="text-start">Jenis Dagang</th>
                 <th class="text-start">Check In</th>
                 <th class="text-start">Check Out</th>
                 <th class="text-start">Status</th>
@@ -50,7 +53,9 @@
                 <td class="text-start">{{$loop->iteration}}</td>
                 <td class="text-start">{{$data->id_pedagang}}</td>
                 <td class="text-start">{{$data->id_lapak}}</td>
-                <td class="text-start">{{$data->nik}}</td>=
+                <td class="text-start">{{$data->nik}}</td>
+                <td class="text-start">{{$data->izin}}</td>
+                <td class="text-start">{{$data->jenis_dagang}}</td>
                 <td class="text-start">{{$data->check_in}}</td>
                 <td class="text-start">{{$data->check_out}}</td>
                 <td class="text-start">{{$data->status}}</td>
@@ -62,6 +67,7 @@
     </div>
     <script type="text/javascript">
         window.print();
+
     </script>
 </body>
 

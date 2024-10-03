@@ -18,6 +18,8 @@ class Pedagang extends Model
         'id_pedagang',
         'id_lapak',
         'nik',
+        'izin',
+        'jenis_dagang',
         'check_in',
         'check_out',
         'status',
