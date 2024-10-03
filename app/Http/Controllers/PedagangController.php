@@ -36,9 +36,8 @@ class PedagangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_pedagang' => 'required|string|unique:pedagang,id_pedagang',
             'id_lapak' => 'required|integer',
-            'nik' => 'required|string',
+            'nik' => 'required', // Validasi hanya diperlukan untuk memastikan NIK tidak kosong
             'izin' => 'required|string',
             'jenis_dagang' => 'required|string',
             'check_in' => 'required|date',
@@ -48,6 +47,30 @@ class PedagangController extends Controller
             'id_penarik_retribusi' => 'required|integer',
         ]);
 
+        // Ambil NIK dari input
+        $nik = $request->input('nik');
+
+        // Validasi apakah NIK kurang dari 16 digit
+        if (strlen($nik) < 16) {
+            return redirect()->back()->withErrors(['nik' => 'NIK harus terdiri dari 16 digit.']);
+        }
+
+        // Validasi apakah NIK terdaftar di tabel data_diri
+        $dataDiri = DataDiri::where('nik', $nik)->first();
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['nik' => 'NIK tidak terdaftar di sistem. Silakan masukkan NIK yang valid.']);
+        }
+
+        // Validasi apakah NIK sudah digunakan oleh pedagang lain
+        $existingPedagang = Pedagang::where('nik', $nik)->first();
+
+        // Cek apakah NIK sudah digunakan oleh pedagang lain
+        if ($existingPedagang) {
+            return redirect()->back()->withErrors(['nik' => 'NIK ini sudah terdaftar oleh pedagang lain.']);
+        }
+
+        // Simpan pedagang baru
         Pedagang::create($request->all());
 
         return redirect()->route('pedagang.index')->with('success', 'Pedagang berhasil ditambahkan.');
@@ -73,7 +96,7 @@ class PedagangController extends Controller
     {
         $request->validate([
             'id_lapak' => 'required|integer',
-            'nik' => 'required|string',
+            'nik' => 'required', // Validasi hanya diperlukan untuk memastikan NIK tidak kosong
             'izin' => 'required|string',
             'jenis_dagang' => 'required|string',
             'check_in' => 'required|date',
@@ -83,11 +106,40 @@ class PedagangController extends Controller
             'id_penarik_retribusi' => 'required|integer',
         ]);
 
+        // Ambil NIK dari input
+        $nik = $request->input('nik');
+
+        // Validasi apakah NIK kurang dari 16 digit
+        if (strlen($nik) < 16) {
+            return redirect()->back()->withErrors(['nik' => 'NIK harus terdiri dari 16 digit.']);
+        }
+
+        // Validasi apakah NIK terdaftar di tabel data_diri
+        $dataDiri = DataDiri::where(
+            'nik',
+            $nik
+        )->first();
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['nik' => 'NIK tidak terdaftar di sistem. Silakan masukkan NIK yang valid.']);
+        }
+
+        // Validasi apakah NIK sudah digunakan oleh pedagang lain, kecuali untuk pedagang yang sedang di-update
+        $existingPedagang = Pedagang::where('nik', $nik)->where('id_pedagang', '!=', $id_pedagang)->first();
+
+        // Cek apakah NIK sudah digunakan oleh pedagang lain
+        if ($existingPedagang) {
+            return redirect()->back()->withErrors(['nik' => 'NIK ini sudah terdaftar oleh pedagang lain.']);
+        }
+
+        // Update pedagang
         $pedagang = Pedagang::findOrFail($id_pedagang);
         $pedagang->update($request->all());
 
         return redirect()->route('pedagang.index')->with('success', 'Pedagang berhasil diperbarui.');
     }
+
+
 
     // Menghapus pedagang
     public function destroy($id_pedagang)

@@ -16,8 +16,11 @@ use App\Models\Alamat;
 use App\Models\DataDiri;
 use App\Models\Izin;
 use App\Models\PenarikRetribusi;
+use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +39,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/admin/dashboard', function () {
+Route::get('/admin/dashboard', function (Request $request) {
     $totalpasar = Pasar::count();
     $totallapak = Lapak::count();
     $totalpedagang = Pedagang::count();
@@ -99,7 +102,6 @@ Route::get('/admin/dashboard', function () {
         $statusAktif[] = (int) $data->total_aktif;
         $statusTidakAktif[] = (int) $data->total_tidak_aktif;
     }
-
 
     // Kirim data ke view
     return view('admin.dashboard', [
@@ -181,8 +183,21 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/search-nik', [PedagangController::class, 'searchNik']);
     Route::get('/search-lapak', [PedagangController::class, 'searchLapak']);
+
+    Route::get('/get-zonasi-data', function (Request $request) {
+        $pasarId = $request->input('pasar');
+
+        // Ambil data zonasi lapak berdasarkan pasar yang dipilih
+        $zonasiData = DB::table('lapak')
+            ->select('zonasi', DB::raw('COUNT(*) as jumlah'))
+            ->where('id_pasar', $pasarId)
+            ->groupBy('zonasi')
+            ->get();
+
+        return response()->json($zonasiData);
+    });
 });
 
-Route::get('/admin/developer', [DeveloperController::class, 'index'])->name('developer.index');
+// Route::get('/admin/developer', [DeveloperController::class, 'index'])->name('developer.index');
 
 require __DIR__ . '/auth.php';
