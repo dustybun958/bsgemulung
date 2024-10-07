@@ -9,6 +9,7 @@ use App\Http\Controllers\PedagangController;
 use App\Http\Controllers\PenarikRetribusiController;
 use App\Http\Controllers\IzinController;
 use App\Http\Controllers\AlamatController;
+use App\Http\Controllers\SuratController;
 use App\Models\Pasar;
 use App\Models\Lapak;
 use App\Models\Pedagang;
@@ -186,6 +187,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/search-nik', [PedagangController::class, 'searchNik']);
     Route::get('/search-lapak', [PedagangController::class, 'searchLapak']);
+
+    Route::get('/admin/cetak-surat', [SuratController::class, 'index'])->name('cetak-surat');
+    Route::post('/admin/cetak-surat', [SuratController::class, 'print'])->name('cetak-surat-print');
+
+
 
     Route::get('/get-zonasi-data', function (Request $request) {
         $pasarId = $request->input('pasar');
