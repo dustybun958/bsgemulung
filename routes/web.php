@@ -185,6 +185,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/data_diri/{nik}', [DataDiriController::class, 'update'])->name('data_diri.update');
     Route::get('/admin/form-diri', [DataDiriController::class, 'formDiri'])->name('form-diri');
 
+    Route::post('/admin/data_diri/import', [DataDiriController::class, 'import'])->name('data_diri.import');
+
     Route::get('/search-nik', [PedagangController::class, 'searchNik']);
     Route::get('/search-lapak', [PedagangController::class, 'searchLapak']);
 

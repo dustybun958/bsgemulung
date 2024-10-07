@@ -61,6 +61,16 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        .btn-excel {
+            background-color: #217346;
+            color: white;
+        }
+
+        .btn-excel:hover {
+            background-color: #1e623a;
+            color: white;
+        }
+
     </style>
 </head>
 

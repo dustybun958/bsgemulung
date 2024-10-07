@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DataDiri;
 use App\Models\Alamat;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\DataDiriImport;
 
 class DataDiriController extends Controller
 {
@@ -89,5 +91,19 @@ class DataDiriController extends Controller
     {
         $dataDiri = DataDiri::with('alamat')->findOrFail($nik); // Mengambil data diri beserta relasi alamat
         return view('data_diri.show', compact('dataDiri'));
+    }
+
+    // Import file excel
+    public function import(Request $request)
+    {
+        // Validasi file
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        // Proses impor file
+        Excel::import(new DataDiriImport, $request->file('file'));
+
+        return redirect()->back()->with('success', 'Data berhasil diimport.');
     }
 }
