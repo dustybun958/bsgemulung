@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\LapakImport;
 use Illuminate\Http\Request;
 use App\Models\Lapak;
 use App\Models\Pasar;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LapakController extends Controller
 {
@@ -157,5 +159,23 @@ class LapakController extends Controller
             $query->where('pasar', $nmpasar);
         })->get();
         return view('admin.lapak.cetak-lp-lapak', compact('cetakLpLapak'));
+    }
+
+    public function import(Request $request)
+    {
+        // Validasi file
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        // Proses impor file
+        Excel::import(new LapakImport, $request->file('file'));
+
+        // Redirect dengan peringatan SweetAlert
+        if (session()->has('error')) {
+            return redirect()->back()->with('alert', session('error'));
+        }
+
+        return redirect()->back()->with('success', 'Data berhasil diimport.');
     }
 }

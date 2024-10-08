@@ -140,6 +140,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/form-lapak', [LapakController::class, 'formLapak'])->name('form-lapak');
     Route::get('/admin/cetak-lapak', [LapakController::class, 'cetakLapak'])->name('cetak-lapak');
     Route::get('/cetak-data-lapak/{nmpasar}', [LapakController::class, 'cetakDataLapak'])->name('cetak-data-lapak');
+    Route::post('/admin/lapak/import', [LapakController::class, 'import'])->name('lapak.import');
 
     Route::get('/admin/izin', [IzinController::class, 'index'])->name('izin.index');
     Route::post('/admin/izin', [IzinController::class, 'store']);
@@ -184,7 +185,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/data_diri/{nik}/edit', [DataDiriController::class, 'edit'])->name('data_diri.edit');
     Route::put('/admin/data_diri/{nik}', [DataDiriController::class, 'update'])->name('data_diri.update');
     Route::get('/admin/form-diri', [DataDiriController::class, 'formDiri'])->name('form-diri');
-
     Route::post('/admin/data_diri/import', [DataDiriController::class, 'import'])->name('data_diri.import');
 
     Route::get('/search-nik', [PedagangController::class, 'searchNik']);
