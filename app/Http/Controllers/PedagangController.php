@@ -36,8 +36,9 @@ class PedagangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_pedagang' => 'required|integer|unique:pedagang,id_pedagang', // Validasi ID pedagang harus unik
             'id_lapak' => 'required|integer',
-            'nik' => 'required', // Validasi hanya diperlukan untuk memastikan NIK tidak kosong
+            'nik' => 'required|numeric|digits:16|unique:pedagang,nik', // NIK harus 16 digit dan unik di tabel pedagang
             'izin' => 'required|string',
             'jenis_dagang' => 'required|string',
             'check_in' => 'required|date',
@@ -47,27 +48,10 @@ class PedagangController extends Controller
             'id_penarik_retribusi' => 'required|integer',
         ]);
 
-        // Ambil NIK dari input
-        $nik = $request->input('nik');
-
-        // Validasi apakah NIK kurang dari 16 digit
-        if (strlen($nik) < 16) {
-            return redirect()->back()->withErrors(['nik' => 'NIK harus terdiri dari 16 digit.']);
-        }
-
         // Validasi apakah NIK terdaftar di tabel data_diri
-        $dataDiri = DataDiri::where('nik', $nik)->first();
-
+        $dataDiri = DataDiri::where('nik', $request->input('nik'))->first();
         if (!$dataDiri) {
             return redirect()->back()->withErrors(['nik' => 'NIK tidak terdaftar di sistem. Silakan masukkan NIK yang valid.']);
-        }
-
-        // Validasi apakah NIK sudah digunakan oleh pedagang lain
-        $existingPedagang = Pedagang::where('nik', $nik)->first();
-
-        // Cek apakah NIK sudah digunakan oleh pedagang lain
-        if ($existingPedagang) {
-            return redirect()->back()->withErrors(['nik' => 'NIK ini sudah terdaftar oleh pedagang lain.']);
         }
 
         // Simpan pedagang baru
@@ -94,9 +78,12 @@ class PedagangController extends Controller
     // Memperbarui data pedagang
     public function update(Request $request, $id_pedagang)
     {
+        $pedagang = Pedagang::findOrFail($id_pedagang);
+
         $request->validate([
+            'id_pedagang' => 'required|integer|unique:pedagang,id_pedagang,' . $pedagang->id_pedagang . ',id_pedagang', // Validasi ID pedagang harus unik kecuali pedagang yang sedang di-update
             'id_lapak' => 'required|integer',
-            'nik' => 'required', // Validasi hanya diperlukan untuk memastikan NIK tidak kosong
+            'nik' => 'required|numeric|digits:16|unique:pedagang,nik,' . $pedagang->id_pedagang . ',id_pedagang', // NIK unik kecuali pedagang yang sedang di-update
             'izin' => 'required|string',
             'jenis_dagang' => 'required|string',
             'check_in' => 'required|date',
@@ -106,34 +93,13 @@ class PedagangController extends Controller
             'id_penarik_retribusi' => 'required|integer',
         ]);
 
-        // Ambil NIK dari input
-        $nik = $request->input('nik');
-
-        // Validasi apakah NIK kurang dari 16 digit
-        if (strlen($nik) < 16) {
-            return redirect()->back()->withErrors(['nik' => 'NIK harus terdiri dari 16 digit.']);
-        }
-
         // Validasi apakah NIK terdaftar di tabel data_diri
-        $dataDiri = DataDiri::where(
-            'nik',
-            $nik
-        )->first();
-
+        $dataDiri = DataDiri::where('nik', $request->input('nik'))->first();
         if (!$dataDiri) {
             return redirect()->back()->withErrors(['nik' => 'NIK tidak terdaftar di sistem. Silakan masukkan NIK yang valid.']);
         }
 
-        // Validasi apakah NIK sudah digunakan oleh pedagang lain, kecuali untuk pedagang yang sedang di-update
-        $existingPedagang = Pedagang::where('nik', $nik)->where('id_pedagang', '!=', $id_pedagang)->first();
-
-        // Cek apakah NIK sudah digunakan oleh pedagang lain
-        if ($existingPedagang) {
-            return redirect()->back()->withErrors(['nik' => 'NIK ini sudah terdaftar oleh pedagang lain.']);
-        }
-
-        // Update pedagang
-        $pedagang = Pedagang::findOrFail($id_pedagang);
+        // Update data pedagang
         $pedagang->update($request->all());
 
         return redirect()->route('pedagang.index')->with('success', 'Pedagang berhasil diperbarui.');

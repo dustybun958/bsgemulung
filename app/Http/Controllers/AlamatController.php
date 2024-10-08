@@ -27,14 +27,17 @@ class AlamatController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi data
         $request->validate([
-            'kode_alamat' => 'required|string|max:60',
+            'kode_alamat' => 'required|string|max:60|unique:alamat,kode_alamat', // Validasi kode_alamat harus unik
             'kab_kota' => 'required|string|max:100',
             'kecamatan' => 'required|string|max:100',
             'Kelurahan' => 'required|string|max:60',
         ]);
 
+        // Menyimpan data alamat ke dalam tabel alamat
         Alamat::create($request->all());
+
         return redirect()->route('alamat.index')->with('success', 'Alamat berhasil ditambahkan.');
     }
 
@@ -56,17 +59,22 @@ class AlamatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $kode_alamat)
     {
+        // Temukan data alamat berdasarkan kode_alamat
+        $alamat = Alamat::findOrFail($kode_alamat);
+
+        // Validasi data
         $request->validate([
-            'kode_alamat' => 'string|max:255',
+            'kode_alamat' => 'required|string|max:60|unique:alamat,kode_alamat,' . $kode_alamat . ',kode_alamat', // Validasi kode_alamat unik kecuali data yang sedang diupdate
             'kab_kota' => 'required|string|max:100',
             'kecamatan' => 'required|string|max:100',
             'Kelurahan' => 'required|string|max:60',
         ]);
 
-        $alamat = Alamat::findOrFail($id);
+        // Memperbarui data alamat
         $alamat->update($request->all());
+
         return redirect()->route('alamat.index')->with('success', 'Alamat berhasil diperbarui.');
     }
 

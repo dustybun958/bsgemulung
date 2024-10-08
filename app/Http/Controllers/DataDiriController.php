@@ -7,6 +7,7 @@ use App\Models\DataDiri;
 use App\Models\Alamat;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DataDiriImport;
+use Illuminate\Support\Facades\Session;
 
 class DataDiriController extends Controller
 {
@@ -36,7 +37,7 @@ class DataDiriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik' => 'required|numeric|unique:data_diri,nik',
+            'nik' => 'required|numeric|digits:16|unique:data_diri,nik',
             'nama' => 'required|string|max:50',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'kode_alamat' => 'required|integer',
@@ -61,7 +62,10 @@ class DataDiriController extends Controller
     // Memperbarui data diri
     public function update(Request $request, $nik)
     {
+        $dataDiri = DataDiri::findOrFail($nik);
+
         $request->validate([
+            'nik' => 'required|numeric|digits:16|unique:data_diri,nik,' . $dataDiri->nik . ',nik',
             'nama' => 'required|string|max:50',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'kode_alamat' => 'required|integer',
@@ -69,7 +73,6 @@ class DataDiriController extends Controller
             'rw' => 'required|numeric|min:0|max:9999',
         ]);
 
-        $dataDiri = DataDiri::findOrFail($nik);
         $dataDiri->update($request->all());
 
         return redirect()->route('data_diri.index')
@@ -103,6 +106,11 @@ class DataDiriController extends Controller
 
         // Proses impor file
         Excel::import(new DataDiriImport, $request->file('file'));
+
+        // Redirect dengan peringatan SweetAlert
+        if (session()->has('error')) {
+            return redirect()->back()->with('alert', session('error'));
+        }
 
         return redirect()->back()->with('success', 'Data berhasil diimport.');
     }

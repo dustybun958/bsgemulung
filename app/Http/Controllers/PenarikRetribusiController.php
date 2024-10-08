@@ -28,6 +28,7 @@ class PenarikRetribusiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_penarik_retribusi' => 'required|integer|unique:penarik_retribusi,id_penarik_retribusi',
             'nama' => 'required|string|max:255',
         ]);
 
@@ -53,13 +54,15 @@ class PenarikRetribusiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id_penarik_retribusi)
     {
+        $penarik_retribusi = PenarikRetribusi::findOrFail($id_penarik_retribusi);
+
         $request->validate([
+            'id_penarik_retribusi' => 'required|integer|unique:penarik_retribusi,id_penarik_retribusi,' . $penarik_retribusi->id_penarik_retribusi . ',id_penarik_retribusi',
             'nama' => 'required|string|max:255',
         ]);
 
-        $penarik_retribusi = PenarikRetribusi::findOrFail($id);
         $penarik_retribusi->update($request->all());
         return redirect()->route('penarik_retribusi.index')->with('success', 'Penarik Retribusi berhasil diperbarui.');
     }
