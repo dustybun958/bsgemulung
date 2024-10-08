@@ -1,3 +1,25 @@
+<style>
+    h2 {
+        font-size: 4vw;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1px;
+    }
+
+    @media (min-width: 768px) {
+        h2 {
+            font-size: 2.5vw;
+        }
+    }
+
+    @media (min-width: 992px) {
+        h2 {
+            font-size: 24px;
+        }
+    }
+
+</style>
+
 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -8,9 +30,7 @@
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <div class="navbar-nav align-items-center">
             <div class="nav-item d-flex align-items-center">
-                <h2 class="m-0 p-0 text-primary" style="font-weight: bold; font-size: 24px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); letter-spacing: 1px;">
-                    UNIT PASAR DPPKUM KOTA MAGELANG
-                </h2>
+                <h2 class="m-0 p-0 text-primary">UNIT PASAR DPPKUM KOTA MAGELANG</h2>
             </div>
         </div>
 
