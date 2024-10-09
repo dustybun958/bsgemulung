@@ -24,8 +24,7 @@ class Pedagang extends Model
         'check_out',
         'status',
         'VA',
-        'id_penarik_retribusi',
-        'izin'
+        'id_penarik_retribusi'
     ];
 
     public $timestamps = false; // Tidak menggunakan timestamps by default

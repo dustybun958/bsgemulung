@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\PedagangImport;
 use Illuminate\Http\Request;
 use App\Models\Pedagang;
 use App\Models\Lapak;
 use App\Models\DataDiri;
 use App\Models\PenarikRetribusi;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PedagangController extends Controller
 {
@@ -152,5 +154,23 @@ class PedagangController extends Controller
         // $pedagang = Pedagang::all();
         $cetakLpPedagang = Pedagang::where('status', [$nmstatus])->get();
         return view('admin.Pedagang.cetak-lp-pedagang', compact('cetakLpPedagang'));
+    }
+
+    public function import(Request $request)
+    {
+        // Validasi file
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        // Proses impor file
+        Excel::import(new PedagangImport, $request->file('file'));
+
+        // Redirect dengan peringatan SweetAlert
+        if (session()->has('error')) {
+            return redirect()->back()->with('alert', session('error'));
+        }
+
+        return redirect()->back()->with('success', 'Data berhasil diimport.');
     }
 }

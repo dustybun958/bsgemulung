@@ -178,6 +178,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/form-pedagang', [PedagangController::class, 'formPedagang'])->name('form-pedagang');
     Route::get('/admin/cetak-pedagang', [PedagangController::class, 'cetakPedagang'])->name('cetak-pedagang');
     Route::get('/cetak-data-pedagang/{nmstatus}', [PedagangController::class, 'cetakDataPedagang'])->name('cetak-data-pedagang');
+    Route::post('/admin/pedagang/import', [PedagangController::class, 'import'])->name('pedagang.import');
 
     Route::get('/admin/data_diri', [DataDiriController::class, 'index'])->name('data_diri.index');
     Route::post('/admin/data_diri', [DataDiriController::class, 'store']);
