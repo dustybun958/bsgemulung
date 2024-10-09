@@ -52,11 +52,11 @@
                         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <x-input-label for="email" class="form-label">
+                                <x-input-label for="name" class="form-label">
                                     <strong>Username</strong>
                                 </x-input-label>
-                                <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                                <x-input-error :messages="$errors->get('email')" class="mt-2 text-danger fs-6" />
+                                <x-text-input id="name" class="form-control" type="name" name="name" :value="old('name')" required autofocus autocomplete="username" />
+                                <x-input-error :messages="$errors->get('name')" class="mt-2 text-danger fs-6" />
                             </div>
 
 

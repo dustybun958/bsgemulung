@@ -71,6 +71,24 @@
             color: white;
         }
 
+        .modal-dialog {
+            display: flex;
+            align-items: center;
+            /* Pusat secara vertikal */
+            justify-content: center;
+            /* Pusat secara horizontal */
+            height: 100vh;
+            /* Membuat modal menyesuaikan tinggi viewport */
+        }
+
+        /* Mengatur batasan tinggi modal-body agar scroll berfungsi */
+        .modal-body {
+            max-height: 70vh;
+            /* Tinggi maksimal body modal */
+            overflow-y: auto;
+            /* Mengaktifkan scroll vertikal */
+        }
+
     </style>
 </head>
 
