@@ -20,7 +20,7 @@
 
               <div class="mb-3">
                 <label for="id_lapak" class="form-label">ID Lapak</label>
-                <input type="number" required class="form-control" name="id_lapak" value="{{ $lapak->id_lapak }}">
+                <input type="text" required class="form-control" name="id_lapak" value="{{ $lapak->id_lapak }}">
               </div>
 
               <div class="mb-3">

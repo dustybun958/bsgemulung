@@ -39,7 +39,7 @@ class PedagangController extends Controller
     {
         $request->validate([
             'id_pedagang' => 'required|integer|unique:pedagang,id_pedagang', // Validasi ID pedagang harus unik
-            'id_lapak' => 'required|integer',
+            'id_lapak' => 'required|string|max:15',
             'nik' => 'required|numeric|digits:16|unique:pedagang,nik', // NIK harus 16 digit dan unik di tabel pedagang
             'izin' => 'required|string',
             'jenis_dagang' => 'required|string',
@@ -84,7 +84,7 @@ class PedagangController extends Controller
 
         $request->validate([
             'id_pedagang' => 'required|integer|unique:pedagang,id_pedagang,' . $pedagang->id_pedagang . ',id_pedagang', // Validasi ID pedagang harus unik kecuali pedagang yang sedang di-update
-            'id_lapak' => 'required|integer',
+            'id_lapak' => 'required|string|max:15',
             'nik' => 'required|numeric|digits:16|unique:pedagang,nik,' . $pedagang->id_pedagang . ',id_pedagang', // NIK unik kecuali pedagang yang sedang di-update
             'izin' => 'required|string',
             'jenis_dagang' => 'required|string',

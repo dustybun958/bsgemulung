@@ -55,7 +55,7 @@ class LapakController extends Controller
     {
         // Validasi data
         $request->validate([
-            'id_lapak' => 'required|integer|unique:lapak,id_lapak',
+            'id_lapak' => 'required|string|max:15|unique:lapak,id_lapak',
             'id_pasar' => 'required|integer',
             'jenis' => 'required',
             'lantai' => 'required',
@@ -110,7 +110,7 @@ class LapakController extends Controller
     {
         // Validasi data
         $request->validate([
-            'id_lapak' => 'required|integer',
+            'id_lapak' => 'required|string|max:15',
             'id_pasar' => 'required|integer',
             'jenis' => 'required',
             'lantai' => 'required',
