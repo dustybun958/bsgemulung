@@ -139,7 +139,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/lapak/{id_lapak}', [LapakController::class, 'update'])->name('lapak.update');
     Route::get('/admin/form-lapak', [LapakController::class, 'formLapak'])->name('form-lapak');
     Route::get('/admin/cetak-lapak', [LapakController::class, 'cetakLapak'])->name('cetak-lapak');
-    Route::get('/cetak-data-lapak/{nmpasar}', [LapakController::class, 'cetakDataLapak'])->name('cetak-data-lapak');
+    Route::get('/cetak-data-lapak/{nmpasar}/{status_lapak}', [LapakController::class, 'cetakDataLapak'])->name('cetak-data-lapak');
     Route::post('/admin/lapak/import', [LapakController::class, 'import'])->name('lapak.import');
 
     Route::get('/admin/izin', [IzinController::class, 'index'])->name('izin.index');

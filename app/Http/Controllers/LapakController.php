@@ -153,11 +153,13 @@ class LapakController extends Controller
         return view('admin.lapak.cetak-lapak');
     }
 
-    public function cetakDataLapak($nmpasar)
+    public function cetakDataLapak($nmpasar, $statusLapak)
     {
         $cetakLpLapak = Lapak::with('pasar')->whereHas('pasar', function ($query) use ($nmpasar) {
             $query->where('pasar', $nmpasar);
-        })->get();
+        })
+            ->where('status_lapak', $statusLapak) // Menambahkan filter berdasarkan status lapak
+            ->get();
         return view('admin.lapak.cetak-lp-lapak', compact('cetakLpLapak'));
     }
 
