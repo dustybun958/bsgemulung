@@ -84,7 +84,7 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="id_lapak" class="form-label">ID Lapak</label>
-                                        <input type="text" required class="form-control" name="id_lapak" id="id_lapak">
+                                        <input type="text" required class="form-control" name="id_lapak" id="id_lapak" placeholder="Masukkan ID Lapak">
                                     </div>
                                 </div>
 
@@ -102,6 +102,7 @@
                                     <div class="mb-3">
                                         <label for="jenis" class="form-label">Jenis</label>
                                         <select name="jenis" id="jenis" class="form-control">
+                                            <option value="" disabled selected>- Pilih Jenis -</option>
                                             <option value="los">Los</option>
                                             <option value="kios">Kios</option>
                                             <option value="plataran">Plataran</option>
@@ -114,6 +115,7 @@
                                     <div class="mb-3">
                                         <label for="lantai" class="form-label">Lantai</label>
                                         <select name="lantai" id="lantai" class="form-control">
+                                            <option value="" disabled selected>- Pilih Lantai -</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -125,6 +127,7 @@
                                     <div class="mb-3">
                                         <label for="blok" class="form-label">Blok</label>
                                         <select name="blok" id="blok" class="form-control">
+                                            <option value="" disabled selected>- Pilih Blok -</option>
                                             <option value="A">A</option>
                                             <option value="B">B</option>
                                             <option value="C">C</option>
@@ -142,6 +145,7 @@
                                 <div class="mb-3">
                                     <label for="zonasi" class="form-label">Zonasi</label>
                                     <select name="zonasi" id="zonasi" class="form-control">
+                                        <option value="" disabled selected>- Pilih Zonasi -</option>
                                         <option value="Sayur">Sayur</option>
                                         <option value="Daging">Daging</option>
                                         <option value="pakian">Pakaian</option>
@@ -156,13 +160,14 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="no" class="form-label">No</label>
-                                        <input type="number" class="form-control" name="no" id="no" min="0" max="99999" oninput="validateInput(this)">
+                                        <input type="number" class="form-control" placeholder="Masukkan Nomor Los/Kios" name="no" id="no" min="0" max="99999" oninput="validateInput(this)">
 
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="hadap" class="form-label">Hadap</label>
                                     <select name="hadap" id="hadap" class="form-control">
+                                        <option value="" disabled selected>- Pilih Hadap -</option>
                                         <option value="Utara">Utara</option>
                                         <option value="Selatan">Selatan</option>
                                         <option value="Timur">Timur</option>
@@ -172,18 +177,19 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="luas" class="form-label">Luas</label>
-                                        <input type="number" class="form-control" name="luas" id="luas" min="0" max="99999" oninput="validateInput(this)">
+                                        <input type="number" class="form-control" placeholder="Masukkan Luas" name="luas" id="luas" min="0" max="99999" oninput="validateInput(this)">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="tarif_dasar" class="form-label">Tarif Dasar</label>
-                                        <input type="number" class="form-control" name="tarif_dasar" id="tarif_dasar" min="0">
+                                        <input type="number" class="form-control" placeholder="Masukkan Tarif Dasar" name="tarif_dasar" id="tarif_dasar" min="0">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="status_lapak" class="form-label">Status Lapak</label>
                                     <select name="status_lapak" id="status lapak" class="form-control">
+                                        <option value="" disabled selected>- Pilih Status -</option>
                                         <option value="Kosong">Kosong</option>
                                         <option value="Isi">Isi</option>
                                         <option value="Telat bayar">Telat bayar</option>

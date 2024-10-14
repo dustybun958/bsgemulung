@@ -70,12 +70,12 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="nama" class="form-label">Nama</label>
-                                        <input type="text" required class="form-control" name="nama">
+                                        <input type="text" required class="form-control" name="nama" placeholder="Masukkan Nama">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="nik" class="form-label">NIK</label>
-                                    <input type="text" class="form-control @error('nik') is-invalid @enderror" required name="nik" id="nik" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                                    <input type="text" class="form-control @error('nik') is-invalid @enderror" required name="nik" id="nik" placeholder="Masukkan NIK" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                                     @error('nik')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -85,6 +85,7 @@
                                 <div class="mb-3">
                                     <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                                     <select name="jenis_kelamin" required id="jenis_kelamin" class="form-control">
+                                        <option value="" disabled selected>- Pilih Jenis Kelamin -</option> <!-- Default option -->
                                         <option value="Laki-laki">Laki-laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
@@ -103,14 +104,14 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="rt" class="form-label">RT</label>
-                                        <input type="number" required class="form-control" name="rt" id="rt" min="0" max="9999" oninput="validateInput(this)">
+                                        <input type="number" required class="form-control" placeholder="Masukkan RT" name="rt" id="rt" min="0" max="9999" oninput="validateInput(this)">
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="rw" class="form-label">RW</label>
-                                        <input type="number" required class="form-control" name="rw" id="rw" min="0" max="9999" oninput="validateInput(this)">
+                                        <input type="number" required class="form-control" placeholder="Masukkan RW" name="rw" id="rw" min="0" max="9999" oninput="validateInput(this)">
                                     </div>
                                 </div>
 

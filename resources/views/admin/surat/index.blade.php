@@ -4,7 +4,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
 
     <div class="row">
-        <h1>Cetak Surat</h1>
+        <h1>Cetak Surat Izin</h1>
     </div>
 
     <div class="car-body">
@@ -112,8 +112,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="no_los" class="form-label">No Los</label>
-                        <input type="text" required class="form-control" name="no_los" id="no_los" placeholder="Masukkan Nomor Los">
+                        <label for="no_los" class="form-label">No Los/Kios</label>
+                        <input type="text" required class="form-control" name="no_los" id="no_los" placeholder="Masukkan Nomor Los/Kios">
                     </div>
 
                     <div class="mb-3">
@@ -128,7 +128,7 @@
 
                     <div class="mb-3">
                         <label for="ukuran" class="form-label">Ukuran</label>
-                        <input type="text" required class="form-control" name="ukuran" id="ukuran" placeholder="Masukkan Ukuran Los">
+                        <input type="text" required class="form-control" name="ukuran" id="ukuran" placeholder="Masukkan Ukuran Los/Kios">
                     </div>
 
                     <div class="mb-3">

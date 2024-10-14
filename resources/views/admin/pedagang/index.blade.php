@@ -77,7 +77,7 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="id_pedagang" class="form-label">ID Pedagang</label>
-                                        <input type="text" class="form-control" required name="id_pedagang" id="id_pedagang">
+                                        <input type="text" class="form-control" required name="id_pedagang" id="id_pedagang" placeholder="Masukkan ID Pedagang">
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -92,35 +92,36 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="nik" class="form-label">NIK</label>
-                                    <input type="number" required class="form-control" name="nik" id="nik" maxlength="16" oninput="validateInput(this)">
+                                    <input type="number" required class="form-control" name="nik" id="nik" placeholder="Masukkan NIK" maxlength="16" oninput="validateInput(this)">
                                     <div id="nik-list" class="list-group"></div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="izin" class="form-label">Izin</label>
-                                        <input type="text" class="form-control" required name="izin" id="izin">
+                                        <input type="text" class="form-control" required name="izin" id="izin" placeholder="Masukkan Izin">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="jenis_dagang" class="form-label">Jenis Dagang</label>
-                                    <input type="text" class="form-control" required name="jenis_dagang" id="jenis_dagang">
+                                    <input type="text" class="form-control" required name="jenis_dagang" id="jenis_dagang" placeholder="Masukkan Jenis Dagang">
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="check_in" class="form-label">Check In</label>
-                                        <input type="date" required class="form-control" name="check_in">
+                                        <input type="date" required class="form-control" name="check_in" placeholder="Masukkan check in">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="check_out" class="form-label">Check Out</label>
-                                        <input type="date" required class="form-control" name="check_out">
+                                        <input type="date" required class="form-control" name="check_out" placeholder="Masukkan check out">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="status" class="form-label">Status</label>
                                     <select name="status" required id="status" class="form-control">
+                                        <option value="" disabled selected>- Pilih Status -</option>
                                         <option value="Aktif">Aktif</option>
                                         <option value="Tidak Aktif">Tidak Aktif</option>
                                     </select>
@@ -128,7 +129,7 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="VA" class="form-label">VA</label>
-                                        <input type="number" required class="form-control" name="VA">
+                                        <input type="number" required class="form-control" name="VA" placeholder="Masukkan VA">
                                     </div>
                                 </div>
                                 <div class="mb-3">
