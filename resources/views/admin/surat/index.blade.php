@@ -81,7 +81,7 @@
                     <div class="mb-3">
                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                         <select class="form-select" required name="jenis_kelamin" id="jenis_kelamin">
-                            <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                            <option value="" disabled selected>- Pilih Jenis Kelamin -</option>
                             <option value="Laki-laki">Laki-laki</option>
                             <option value="Perempuan">Perempuan</option>
                         </select>
@@ -90,7 +90,7 @@
                     <div class="mb-3">
                         <label for="warga_negara" class="form-label">Warga Negara</label>
                         <select class="form-select" required name="warga_negara" id="warga_negara">
-                            <option value="" disabled selected>Pilih Warga Negara</option>
+                            <option value="" disabled selected>- Pilih Warga Negara -</option>
                             <option value="Laki-laki">Indonesia</option>
                             <option value="Perempuan">Asing</option>
                         </select>

@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="zonasi" class="form-label">Zonasi</label>
-                                    <select name="zonasi" id="zonasi" class="form-control">
+                                    {{-- <select name="zonasi" id="zonasi" class="form-control">
                                         <option value="" disabled selected>- Pilih Zonasi -</option>
                                         <option value="Sayur">Sayur</option>
                                         <option value="Daging">Daging</option>
@@ -155,7 +155,8 @@
                                         <option value="Sembako">Sembako</option>
                                         <option value="Elektronik">Elektronik</option>
                                         <option value="Campuran">Campuran</option>
-                                    </select>
+                                    </select> --}}
+                                    <input type="text" class="form-control" placeholder="Masukkan Zonasi" name="zonasi">
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-3">
@@ -240,7 +241,8 @@
                                     <td class="text-start">{{ $data->no }}</td>
                                     <td class="text-start">{{ $data->hadap }}</td>
                                     <td class="text-start">{{ $data->luas }}</td>
-                                    <td class="text-start">{{ $data->tarif_dasar }}</td>
+                                    {{-- <td class="text-start">{{ $data->tarif_dasar }}</td> --}}
+                                    <td class="text-start">Rp {{ number_format($data->tarif_dasar, 0, ',', '.') }}</td>
                                     <td class="text-start">
                                         <span class="badge 
     {{ $data->status_lapak == 'Kosong' ? 'bg-offline' : '' }}
