@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Imports\SuratImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Log; // Pastikan ini diimpor
+// use App\Http\Controllers\DateTime;
+use DateTime;
 
 class SuratController extends Controller
 {
@@ -78,5 +83,103 @@ class SuratController extends Controller
 
         // Download file setelah disimpan
         return response()->download(storage_path('app/public/' . $fileName))->deleteFileAfterSend(true);
+    }
+    public function importExcel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        // Import data dari file Excel
+        $data = Excel::toCollection(new SuratImport, $request->file('file'))->first()->skip(1);
+
+        // Looping untuk mencetak surat berdasarkan setiap data
+        foreach ($data as $row) {
+            // Panggil cetakSurat untuk setiap baris data dan berikan nama file yang unik
+            $this->cetakSurat($row);
+        }
+
+        return back()->with('success', 'Surat berhasil dicetak.');
+    }
+
+    private function cetakSurat($data)
+    {
+        // Pastikan PhpOffice\PhpWord dan Carbon sudah diimpor sebelum menggunakan
+        $phpWord = new \PhpOffice\PhpWord\TemplateProcessor('surat.docx');
+
+        $tanggal_surat = Carbon::now()->translatedFormat('j F Y');
+
+        // Tanggal lahir dari Excel (angka serial, contoh: 37927)
+        $tanggal_lahir = $data[8];
+
+        // Debug: Log untuk memeriksa tanggal yang diambil
+        Log::info("Tanggal Lahir yang diambil: " . $tanggal_lahir);
+
+        // Cek jika $tanggal_lahir adalah angka (format serial Excel)
+        if (is_numeric($tanggal_lahir)) {
+            // Convert serial Excel ke format tanggal menggunakan Carbon
+            $tanggal_lahir_carbon = Carbon::createFromFormat('Y-m-d', Carbon::instance(DateTime::createFromFormat('Y-m-d', '1900-01-01')->modify('+' . $tanggal_lahir . ' days'))->format('Y-m-d'));
+            $umur = $tanggal_lahir_carbon->age;
+            $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('d-m-Y');
+        } else {
+            // Jika format sudah benar, lanjutkan dengan parsing seperti sebelumnya
+            try {
+                // Coba parsing dalam format MM/DD/YYYY
+                $parsedDate = Carbon::createFromFormat('m/d/Y', $tanggal_lahir);
+                $umur = $parsedDate->age;
+                $tanggal_lahir_formatted = $parsedDate->format('d-m-Y');
+            } catch (\Exception $e1) {
+                // Cek apakah kesalahan terkait format
+                Log::error("Format MM/DD/YYYY gagal: " . $e1->getMessage());
+
+                try {
+                    // Coba parsing dalam format DD/MM/YYYY jika gagal
+                    $parsedDate = Carbon::createFromFormat('d/m/Y', $tanggal_lahir);
+                    $umur = $parsedDate->age;
+                    $tanggal_lahir_formatted = $parsedDate->format('d-m-Y');
+                } catch (\Exception $e2) {
+                    // Jika semua format gagal, berikan nilai default dan log kesalahan
+                    Log::error("Format DD/MM/YYYY gagal: " . $e2->getMessage());
+                    $umur = 'N/A';
+                    $tanggal_lahir_formatted = 'Invalid Date';
+                }
+            }
+        }
+
+        // Lanjutkan dengan pengaturan nilai di PhpWord
+        $phpWord->setValues([
+            'pasar' => $data[0],
+            'jenis' => $data[1],
+            'no_surat' => $data[2],
+            'nama' => $data[3],
+            'no_aturan' => $data[4],
+            'tahun' => $data[5],
+            'nik' => $data[6],
+            'tempat_lahir' => $data[7],
+            'tanggal_surat' => $tanggal_surat,
+            'umur' => $umur,
+            'tanggal_lahir' => $tanggal_lahir_formatted,
+            'jenis_kelamin' => $data[9],
+            'alamat' => $data[10],
+            'warga_negara' => $data[11],
+            'no_telp' => $data[12],
+            'pekerjaan' => $data[13],
+            'blok' => $data[14],
+            'no_los' => $data[15],
+            'klasifikasi_klas' => $data[16],
+            'lantai' => $data[17],
+            'ukuran' => $data[18],
+            'jenis_dagang' => $data[19],
+        ]);
+
+        $nama = $data[3] ?: 'surat_izin';
+        $fileName = 'surat_izin_' . $nama .  '.docx';
+
+        // Path file yang disimpan di server (storage)
+        $filePath = storage_path('app/public/' . $fileName);
+        $phpWord->saveAs($filePath);
+
+        // Kirimkan file ke browser untuk diunduh
+        return response()->download($filePath);
     }
 }

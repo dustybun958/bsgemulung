@@ -193,6 +193,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/cetak-surat', [SuratController::class, 'index'])->name('cetak-surat');
     Route::post('/admin/cetak-surat', [SuratController::class, 'print'])->name('cetak-surat-print');
+    Route::post('/import-excel', [SuratController::class, 'importExcel'])->name('import-excel');
 
 
 
