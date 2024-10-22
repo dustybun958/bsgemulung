@@ -187,7 +187,6 @@ class SuratController extends Controller
         $phpWord->saveAs($filePath);
 
         // Kirimkan file ke browser untuk diunduh
-        // return response()->download($filePath);
         return $fileName;
     }
 
@@ -195,16 +194,31 @@ class SuratController extends Controller
     {
         $fileNames = session('fileNames');
 
+        // Cek apakah ada file yang tersedia untuk diunduh
+        if (empty($fileNames)) {
+            return redirect()->back()->with('error', 'Tidak ada file surat untuk diunduh.');
+        }
+
         // Buat file ZIP
         $zipFileName = 'surat_izin.zip';
         $zipFilePath = storage_path('app/public/' . $zipFileName);
         $zip = new \ZipArchive;
 
+        // Coba membuka file ZIP
         if ($zip->open($zipFilePath, \ZipArchive::CREATE) === TRUE) {
             foreach ($fileNames as $fileName) {
-                $zip->addFile(storage_path('app/public/' . $fileName), $fileName);
+                $filePath = storage_path('app/public/' . $fileName);
+                // Cek jika file ada sebelum menambahkannya ke ZIP
+                if (file_exists($filePath)) {
+                    $zip->addFile($filePath, $fileName);
+                } else {
+                    // Jika file tidak ditemukan, ganti pesan kesalahan
+                    return redirect()->back()->with('error', 'File unduh tidak ditemukan.');
+                }
             }
             $zip->close();
+        } else {
+            return redirect()->back()->with('error', 'Gagal membuat file ZIP.');
         }
 
         // Hapus file Word yang dihasilkan

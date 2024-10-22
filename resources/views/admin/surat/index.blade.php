@@ -17,17 +17,14 @@
         </div>
     </form>
 
-    {{-- Tampilkan pesan kesalahan jika ada --}}
-    @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-    @endif
-
     {{-- Tambahkan tombol untuk mengunduh semua file --}}
-    @if(session('fileNames'))
+    @if(session('fileNames') && count(session('fileNames')) > 0)
     <div class="mb-3">
         <a href="{{ route('download-all') }}" class="btn btn-primary col-md-12">Unduh Semua Surat</a>
+    </div>
+    @else
+    <div class="mb-3">
+        <button class="btn btn-primary col-md-12" disabled>Unduh Semua Surat</button>
     </div>
     @endif
 

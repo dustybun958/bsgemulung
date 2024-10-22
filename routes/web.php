@@ -70,18 +70,6 @@ Route::get('/admin/dashboard', function (Request $request) {
         $dataTelatBayar[] = (int)$lapak->total_telat_bayar;
     }
 
-    // Mengembalikan data ke view
-    // Mengembalikan data ke view
-    // return view('admin.dashboard', [
-    //     'categories' => $categories,
-    //     'dataKosong' => $dataKosong,
-    //     'dataIsi' => $dataIsi,
-    //     'dataTelatBayar' => $dataTelatBayar,
-    //     'totalpasar' => $totalpasar,
-    //     'totallapak' => $totallapak,
-    //     'totalpedagang' => $totalpedagang
-    // ])->with('lapakData', $lapakData); // Untuk memastikan data lapak
-
     $pedagangData = DB::table('pedagang')
         ->join('lapak', 'pedagang.id_lapak', '=', 'lapak.id_lapak')
         ->join('pasar', 'lapak.id_pasar', '=', 'pasar.id_pasar')
@@ -163,10 +151,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/penarik_retribusi/{id}', [PenarikRetribusiController::class, 'update'])->name('penarik_retribusi.update');
     Route::get('/admin/form-penarik', [PenarikRetribusiController::class, 'formPenarik'])->name('form-penarik');
 
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     Route::get('/auth/ubah-password', [ProfileController::class, 'PasswordForm'])->name('password.ubah');
     Route::post('/auth/ubah-password', [ProfileController::class, 'ubahPassword'])->name('password.update');
 
@@ -209,7 +193,5 @@ Route::middleware('auth')->group(function () {
         return response()->json($zonasiData);
     });
 });
-
-// Route::get('/admin/developer', [DeveloperController::class, 'index'])->name('developer.index');
 
 require __DIR__ . '/auth.php';
