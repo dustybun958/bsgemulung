@@ -84,6 +84,7 @@ class SuratController extends Controller
         // Download file setelah disimpan
         return response()->download(storage_path('app/public/' . $fileName))->deleteFileAfterSend(true);
     }
+
     public function importExcel(Request $request)
     {
         $request->validate([
@@ -93,11 +94,17 @@ class SuratController extends Controller
         // Import data dari file Excel
         $data = Excel::toCollection(new SuratImport, $request->file('file'))->first()->skip(1);
 
+        $fileNames = []; // Array untuk menyimpan nama file
+
         // Looping untuk mencetak surat berdasarkan setiap data
         foreach ($data as $row) {
             // Panggil cetakSurat untuk setiap baris data dan berikan nama file yang unik
-            $this->cetakSurat($row);
+            $fileName = $this->cetakSurat($row);
+            $fileNames[] = $fileName; // Simpan nama file ke array
         }
+
+        // Simpan nama file ke dalam session untuk digunakan saat mendownload
+        session(['fileNames' => $fileNames]);
 
         return back()->with('success', 'Surat berhasil dicetak.');
     }
@@ -180,6 +187,35 @@ class SuratController extends Controller
         $phpWord->saveAs($filePath);
 
         // Kirimkan file ke browser untuk diunduh
-        return response()->download($filePath);
+        // return response()->download($filePath);
+        return $fileName;
+    }
+
+    public function downloadAll()
+    {
+        $fileNames = session('fileNames');
+
+        // Buat file ZIP
+        $zipFileName = 'surat_izin.zip';
+        $zipFilePath = storage_path('app/public/' . $zipFileName);
+        $zip = new \ZipArchive;
+
+        if ($zip->open($zipFilePath, \ZipArchive::CREATE) === TRUE) {
+            foreach ($fileNames as $fileName) {
+                $zip->addFile(storage_path('app/public/' . $fileName), $fileName);
+            }
+            $zip->close();
+        }
+
+        // Hapus file Word yang dihasilkan
+        foreach ($fileNames as $fileName) {
+            $filePath = storage_path('app/public/' . $fileName);
+            if (file_exists($filePath)) {
+                unlink($filePath); // Hapus file
+            }
+        }
+
+        // Hapus file ZIP setelah diunduh
+        return response()->download($zipFilePath)->deleteFileAfterSend(true);
     }
 }

@@ -194,8 +194,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/cetak-surat', [SuratController::class, 'index'])->name('cetak-surat');
     Route::post('/admin/cetak-surat', [SuratController::class, 'print'])->name('cetak-surat-print');
     Route::post('/import-excel', [SuratController::class, 'importExcel'])->name('import-excel');
-
-
+    Route::get('/download-all', [SuratController::class, 'downloadAll'])->name('download-all');
 
     Route::get('/get-zonasi-data', function (Request $request) {
         $pasarId = $request->input('pasar');
