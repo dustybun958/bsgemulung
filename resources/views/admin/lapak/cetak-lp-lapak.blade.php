@@ -26,6 +26,7 @@
         th {
             background-color: #f2f2f2;
         }
+
     </style>
     <title>Cetak Data Lapak</title>
 </head>
@@ -49,25 +50,27 @@
                 <th class="text-start">Status Lapak</th>
             </tr>
             @foreach ($cetakLpLapak as $data)
-                <tr>
-                    <td class="text-start">{{ $loop->iteration }}</td>
-                    <td class="text-start">{{ $data->id_lapak }}</td>
-                    <td class="text-start">{{ $data->pasar->pasar }}</td>
-                    <td class="text-start">{{ $data->jenis }}</td>
-                    <td class="text-start">{{ $data->lantai }}</td>
-                    <td class="text-start">{{ $data->blok }}</td>
-                    <td class="text-start">{{ $data->zonasi }}</td>
-                    <td class="text-start">{{ $data->no }}</td>
-                    <td class="text-start">{{ $data->hadap }}</td>
-                    <td class="text-start">{{ $data->luas }}</td>
-                    <td class="text-start">{{ $data->tarif_dasar }}</td>
-                    <td class="text-start">{{ $data->status_lapak }}</td>
-                </tr>
+            <tr>
+                <td class="text-start">{{ $loop->iteration }}</td>
+                <td class="text-start">{{ $data->id_lapak }}</td>
+                <td class="text-start">{{ $data->pasar->pasar }}</td>
+                <td class="text-start">{{ $data->jenis }}</td>
+                <td class="text-start">{{ $data->lantai }}</td>
+                <td class="text-start">{{ $data->blok }}</td>
+                <td class="text-start">{{ $data->zonasi }}</td>
+                <td class="text-start">{{ $data->no }}</td>
+                <td class="text-start">{{ $data->hadap }}</td>
+                <td class="text-start">{{ $data->luas }}</td>
+                {{-- <td class="text-start">{{ $data->tarif_dasar }}</td> --}}
+                <td class="text-start">Rp {{ number_format($data->tarif_dasar, 0, ',', '.') }}</td>
+                <td class="text-start">{{ $data->status_lapak }}</td>
+            </tr>
             @endforeach
         </table>
     </div>
     <script type="text/javascript">
         window.print();
+
     </script>
 </body>
 
