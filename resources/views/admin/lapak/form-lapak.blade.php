@@ -26,6 +26,7 @@
         th {
             background-color: #f2f2f2;
         }
+
     </style>
     <title>Cetak Data Lapak</title>
 </head>
@@ -60,7 +61,8 @@
                 <td class="text-start">{{ $data->no }}</td>
                 <td class="text-start">{{ $data->hadap }}</td>
                 <td class="text-start">{{ $data->luas }}</td>
-                <td class="text-start">{{ $data->tarif_dasar }}</td>
+                {{-- <td class="text-start">{{ $data->tarif_dasar }}</td> --}}
+                <td class="text-start">Rp {{ number_format($data->tarif_dasar, 0, ',', '.') }}</td>
                 <td class="text-start">{{ $data->status_lapak }}</td>
             </tr>
             @endforeach
@@ -68,6 +70,7 @@
     </div>
     <script type="text/javascript">
         window.print();
+
     </script>
 </body>
 

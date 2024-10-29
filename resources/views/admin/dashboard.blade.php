@@ -84,7 +84,7 @@
                                 type: 'column'
                             }
                             , title: {
-                                text: 'Status Per Lapak'
+                                text: 'Status Lapak Per Pasar'
                             }
                             , xAxis: {
                                 categories: categories
@@ -143,7 +143,7 @@
                                 type: 'column'
                             }
                             , title: {
-                                text: 'Status Pedagang'
+                                text: 'Status Pedagang Per Pasar'
                             }
                             , xAxis: {
                                 categories: categories2
